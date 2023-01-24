@@ -1,5 +1,6 @@
-import { ChangeEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import './App.css'
+import AddForm from './components/AddClassForm';
 import NavBar from './components/NavBar';
 
 
@@ -19,35 +20,22 @@ function App() {
       <div id='content'>
         <div id="top">
           {!isAdding &&
-          <button
-            id='classbtn'
-            onClick={changeAdd}>
-            Add Class
-          </button>}
+            <button
+              id='classbtn'
+              onClick={changeAdd}>
+              Add Class
+            </button>}
         </div>
         <div id='rest'>
           <div id='middle'>
             {className}
           </div>
 
-          <div id="bottom">
-            {isAdding &&
-              <form>
-                <label htmlFor="classinput">Enter the Class Name</label>
-                <input 
-                  id="classinput"
-                  onChange={(event: ChangeEvent<HTMLInputElement>) => {
-                    event.preventDefault();
-                    setClassName(event.target.value)  
-                  }} />
-                <button id="submitbtn">Enter</button>
-              </form>
-            }
-          </div>
+          <AddForm showForm={isAdding}/>
         </div>
       </div>
     </div>
   )
 }
 
-export default App
+export default App;

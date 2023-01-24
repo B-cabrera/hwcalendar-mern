@@ -1,3 +1,5 @@
+@import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
+
 body {
     background-color: #0a0a0af3;
     margin: 0;
@@ -7,11 +9,12 @@ body {
 }
 
 button {
-    font-family: Georgia;
+    font-family: Raleway;
     font-size: 25px;
+    font-weight: 100;
     background-color:#474747f3;
     border: none;
-    border-radius: 5px;
+    border-radius: 8px;
     color: white;
     padding: 5px 10px 5px 10px;
 }
