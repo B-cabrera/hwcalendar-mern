@@ -1,25 +1,17 @@
-import { ChangeEvent, FormEvent, useState } from "react";
 import FormProps from "../types/FormProps";
 
 
-export default function AddClassForm({showForm} : FormProps): JSX.Element {
-    const[nameOfClass, setNameOfClass] = useState('');
-
-    function addClass(event: FormEvent<HTMLFormElement>) {
-        event.preventDefault()
-        // API Work Here
-        console.log(nameOfClass)
-    }
+export default function AddClassForm({showForm, onChange, onSubmit, value} : FormProps): JSX.Element {
 
     return (
         <div id="bottom">
             {showForm && 
-            <form onSubmit={addClass}>
+            <form onSubmit={onSubmit}>
                 <label htmlFor="classinput">Enter the Class Name</label>
                 <input
                     id="classinput"
-                    value={nameOfClass}
-                    onChange={(e) => setNameOfClass(e.target.value)}/>
+                    value={value}
+                    onChange={onChange}/>
                 <button id="submitbtn">Enter</button>
             </form>}
 

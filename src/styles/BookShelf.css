@@ -1,0 +1,26 @@
+#books {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    text-align: center;
+    padding: 0px;
+}
+
+#books li{
+    width: fit-content;
+    list-style: none;
+    letter-spacing: 1px; 
+    border-radius: 10px;
+    padding: 5px 40px 5px 40px;
+    font-size: 20px;
+    font-family: Raleway;
+    font-weight: 100;
+    background:#474747;
+    margin-bottom: 10px;
+}
+
+#books li:hover {
+    opacity: .8;
+    cursor: pointer;
+}
+

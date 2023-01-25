@@ -1,10 +1,9 @@
 @import url('https://fonts.googleapis.com/css2?family=Raleway:wght@100&display=swap');
 
 body {
+    overflow: hidden;
     background-color: #0a0a0af3;
     margin: 0;
-    overflow: hidden;
-    font-family: Georgia;
     height: 100%;
 }
 
@@ -28,4 +27,9 @@ input {
     padding-top: 5px;
     padding-bottom: 5px;
     font-family: Georgia;
+}
+
+label {
+    font-family: Raleway;
+    font-weight: 100;
 }

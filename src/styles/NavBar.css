@@ -1,0 +1,12 @@
+#navbar {
+    display: flex;
+    background-color: #0a0a0a74;
+    width: 100%;
+    top: 0;
+    margin-top: 0;
+}
+
+#navbar h1 {
+    color:rgb(176, 176, 176);
+    font-weight: 300;
+}
