@@ -5,8 +5,7 @@ export async function addClass(req: Request, res: Response) {
     const newClass = new ClassHW({
         class: "Wow",
         assignments: [{
-            hwName: "Wow",
-            class: "Here",
+            name: "Wow",
         }],
     });
 
