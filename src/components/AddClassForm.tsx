@@ -1,4 +1,4 @@
-import FormProps from "../types/FormProps";
+import FormProps from "../types/TFormProps";
 
 
 export default function AddClassForm({showForm, onChange, onSubmit, value} : FormProps): JSX.Element {
