@@ -1,12 +1,18 @@
 import express, { Application, Router } from 'express';
 import router from './api';
+import * as dotenv from 'dotenv';
+import mongoose from 'mongoose';
+
+dotenv.config()
 
 const app: Application = express();
-const port = process.env.PORT || 2004;
+const PORT = process.env.PORT || 2004;
 
 app.use(express.json())
 app.use('/api', router);
 
-app.listen(port, () => {
-    console.log(`Listening on port ${port}`)
-})
+mongoose.set('strictQuery', true);
+mongoose.connect(process.env.MONGO_URI!).then(() => {
+    app.listen(PORT);
+    console.log(`We are listening on port:${PORT}`);
+});

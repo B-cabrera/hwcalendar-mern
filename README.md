@@ -9,9 +9,11 @@ A personal project to practice developing a web application with the MERN stack 
 - User Auth to allow for individual calendars/reminders
 
 ### Progress
-Current Phase: Developing REST API using Express.js and Typescript
-Next Phase: Connecting API to MongoDB
+Current Phase: Connecting API to MongoDB.
+Next Phase: Finishing API routes and testing with current UI.
 
+### Notepad
+- [ ] Fix issue where adding a new document doesn't add to one that I want.
 
 #### Contact
 I am open to all comments about improving the code and overall improvements.  

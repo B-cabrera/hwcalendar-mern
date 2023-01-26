@@ -1,11 +1,10 @@
-import express, { Router, Request, Response } from 'express';
+import { Router} from 'express';
+import {addClass} from './controllers/addClassController';
 
 const router = Router();
 
 
-router.get('/', (req: Request, res: Response) => {
-    res.send('YOU SET ME UP.')
-});
+router.get('/class', addClass);
 
 
 export default router;
