@@ -1,5 +1,4 @@
 # HwCalendar
-***
 A web application where you can add HW with due dates based on class and be reminded using (NOT YET CHOSEN).
 
 ## Description
@@ -10,8 +9,8 @@ A personal project to practice developing a web application with the MERN stack 
 - User Auth to allow for individual calendars/reminders
 
 ### Progress
-Current Phase: Building Basic UI Layout  
-Next Phase: Begin developing RESTful API using Express.js
+Current Phase: Developing REST API using Express.js and Typescript
+Next Phase: Connecting API to MongoDB
 
 
 #### Contact

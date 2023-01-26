@@ -7,6 +7,7 @@
 }
 
 #books li{
+    color: black;
     width: fit-content;
     list-style: none;
     letter-spacing: 1px; 
@@ -14,13 +15,20 @@
     padding: 5px 40px 5px 40px;
     font-size: 20px;
     font-family: Raleway;
-    font-weight: 100;
-    background:#474747;
+    font-weight: 900;
+    background:#ffebeb;
     margin-bottom: 10px;
 }
 
 #books li:hover {
     opacity: .8;
     cursor: pointer;
+}
+
+#books::after {
+    content: '';
+    border: 5px solid #000;
+    min-width: 500px;
+    width: 50vw;
 }
 

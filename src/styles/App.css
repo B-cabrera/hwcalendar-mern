@@ -26,14 +26,3 @@
     margin-left: 10px;
 }
 
-input {
-    background-color: rgb(57, 57, 57);
-    border: none;
-    letter-spacing: .7px;
-    text-align: center;
-    color: white;
-}
-
-input:focus {
-    outline: none;
-}
