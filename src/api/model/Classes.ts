@@ -13,7 +13,11 @@ function validator(val: []) {
 }
 
 const ClassHWSchema = new Schema({
-    class: {type: String, required: true},
+    class: {
+        type: String, 
+        required: true,
+        unique: true,
+    },
     assignments: {
         type: [hw],
         validate : validator,

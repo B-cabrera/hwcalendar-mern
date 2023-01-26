@@ -1,10 +1,10 @@
 import { Router} from 'express';
-import {addClass} from './controllers/addClassController';
+import {getAllClasses} from './controllers/classController';
 
 const router = Router();
 
-
-router.get('/class', addClass);
+router.route('/')
+.get(getAllClasses);
 
 
 export default router;

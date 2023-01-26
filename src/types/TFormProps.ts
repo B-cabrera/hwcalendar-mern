@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent } from "react";
 
-type FormProps = {
+type TFormProps = {
     showForm?: boolean,
     onChange: (event: ChangeEvent<HTMLInputElement>) => void,
     onSubmit: (event: FormEvent<HTMLFormElement>) => void,
@@ -8,4 +8,4 @@ type FormProps = {
 }
 
 
-export default FormProps;
+export default TFormProps;

@@ -1,4 +1,4 @@
-import THW from "./HW";
+import THW from "./THW";
 
 type TClassHW = {
     class: String,
