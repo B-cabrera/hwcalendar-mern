@@ -9,8 +9,8 @@ A personal project to practice developing a web application with the MERN stack 
 - User Auth to allow for individual calendars/reminders
 
 ### Progress
-Current Phase: Finishing API routes and testing with current UI  
-Next Phase: Building more UI pages
+Current Phase: Building assignments page.
+Next Phase: Implementing form to create assignment.
 
 #### Contact
 I am open to all comments about improving the code and overall improvements.  
