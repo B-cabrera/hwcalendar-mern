@@ -1,12 +1,13 @@
 import { useEffect, useState } from "react";
-import TClassHW from "../types/TClassHW";
 import "../styles/BookShelf.css"
 import { handleGetAllClasses } from "../handlers/classHandler";
 import { TBookShelfProps } from "../types/TBookShelfProps";
+import { Link } from "react-router-dom";
+import TClassHW from "../types/TClassHW";
 
 
 export default function BookShelf({latestClass}: TBookShelfProps) {
-    const [classes, setClasses] = useState<String[] | null>();
+    const [classes, setClasses] = useState<TClassHW[] | null>();
     
     useEffect(() => {
         async function getClasses() {
@@ -18,8 +19,8 @@ export default function BookShelf({latestClass}: TBookShelfProps) {
     return (
         <ul id="books">
             {
-                classes?.map((name, index)=> (
-                   <li key={index}>{name}</li>
+                classes?.map((aClass)=> (
+                    <Link to={`/${aClass._id}`}>{aClass.class}</Link>
                 ))
             }
         </ul>

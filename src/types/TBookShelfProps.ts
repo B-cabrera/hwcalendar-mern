@@ -1,3 +1,5 @@
+import TClassHW from "./TClassHW"
+
 export type TBookShelfProps = {
-    latestClass: string
+    latestClass: TClassHW | undefined
 }

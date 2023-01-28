@@ -7,10 +7,9 @@ export async function getAllClassNames(req: Request, res: Response) {
     try {
         const allClasses = await ClassHW.find() as TClassHW[];
 
-        const nameList = allClasses.map(({class: name}) => name);
 
         res.status(200);
-        res.json(nameList);
+        res.json(allClasses);
     } catch (error) {
         res.status(500);
         res.send("No no no");

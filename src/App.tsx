@@ -4,6 +4,7 @@ import AddForm from './components/AddClassForm';
 import NavBar from './components/NavBar';
 import BookShelf from './components/BookShelf';
 import { handleCreateClass, handleGetAllClasses } from './handlers/classHandler';
+import TClassHW from './types/TClassHW';
 
 
 
@@ -11,7 +12,7 @@ function App() {
   const [isAdding, setIsAdding] = useState(false);
   const [nameOfClass, setNameOfClass] = useState('');
   const [error, setError] = useState(false);
-  const [latestClass, setLatestClass] = useState('');
+  const [latestClass, setLatestClass] = useState<TClassHW>();
 
   function changeAdd() {
     if (!isAdding) setIsAdding(true);
@@ -30,10 +31,10 @@ function App() {
   async function createClass(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
-    
+
     const { created: createdClass } = await handleCreateClass(event, nameOfClass);
 
-    createdClass ? (setLatestClass(createdClass.class), reset()) : setError(true);
+    createdClass ? (setLatestClass(createdClass), reset()) : setError(true);
   }
 
   return (

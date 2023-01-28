@@ -26,10 +26,10 @@ Promise<{created: TClassHW | null}>{
 }
 
 
-export async function handleGetAllClasses(): Promise<String[] | null> {
+export async function handleGetAllClasses(): Promise<TClassHW[] | null> {
     const response = await fetch('http://localhost:4008/api');
 
-    const allClasses = response.status == 500 ? null : await response.json() as String[];
+    const allClasses = response.status == 500 ? null : await response.json() as TClassHW[];
 
 
     return allClasses;

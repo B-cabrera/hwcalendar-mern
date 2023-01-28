@@ -6,7 +6,7 @@
     padding: 0px;
 }
 
-#books li{
+#books a{
     color: black;
     width: fit-content;
     list-style: none;
@@ -20,7 +20,7 @@
     margin-bottom: 10px;
 }
 
-#books li:hover {
+#books a:hover {
     opacity: .8;
     cursor: pointer;
 }
@@ -32,3 +32,11 @@
     width: 50vw;
 }
 
+a:link {
+    text-decoration: none;
+    color:#000;
+}
+
+a:visited {
+    color: #000;
+}
