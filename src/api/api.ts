@@ -1,13 +1,11 @@
 import { Router} from 'express';
-import {createNewClass, getAllClassNames} from './controllers/classController';
+import {createNewClass, getAllClassNames, getAssignmentsByClassID} from './controllers/classController';
 
 const router = Router();
 
-router.route('/')
-.get(getAllClassNames);
-
-router.route('/class')
-.post(createNewClass);
+router.get('/', getAllClassNames)
+router.post('/class', createNewClass)
+router.get('/:id', getAssignmentsByClassID)
 
 
 export default router;

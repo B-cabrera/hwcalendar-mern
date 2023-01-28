@@ -1,5 +1,6 @@
 import { FormEvent } from "react";
 import TClassHW from "../types/TClassHW";
+import THW from "../types/THW";
 
 export async function handleCreateClass(event: FormEvent<HTMLFormElement>, nameOfClass: string): 
 Promise<{created: TClassHW | null}>{
@@ -33,4 +34,12 @@ export async function handleGetAllClasses(): Promise<TClassHW[] | null> {
 
 
     return allClasses;
+}
+
+export async function handleGetAssignmentByClassID(id: string | undefined) {
+    const response = await fetch(`http://localhost:4008/api/${id}`);
+    const classAssignments = response.status == 404 ? null : await response.json() as [THW];
+
+
+    return classAssignments;
 }

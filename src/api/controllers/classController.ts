@@ -34,3 +34,20 @@ export async function createNewClass(req: Request, res: Response ) {
         res.send("No no no");
     }
 }
+
+export async function getAssignmentsByClassID(req: Request, res: Response ) {
+    const id = req.params.id;
+
+    try {
+        const theClass = await ClassHW.findById(id) as TClassHW;
+        const theAssignments = theClass.assignments;
+        
+        res.status(200);
+        res.json(theAssignments);
+    } catch (error) {
+        res.status(404)
+        res.send(`No class with id: ${id}`)
+    }
+
+
+}
