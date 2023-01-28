@@ -9,7 +9,7 @@
 
 #content {
     display: flex;
-    gap: 50px;
+    gap: 80px;
     align-items: center;
     flex-direction: column;
     margin-top: 10px;
@@ -26,3 +26,9 @@
     margin-left: 10px;
 }
 
+#warning {
+    font-family: Raleway;
+    color: red;
+    font-weight: 900;
+    font-size: 25px;
+}

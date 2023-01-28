@@ -1,14 +1,17 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react'
 import './styles/App.css'
 import AddForm from './components/AddClassForm';
 import NavBar from './components/NavBar';
 import BookShelf from './components/BookShelf';
+import { handleCreateClass, handleGetAllClasses } from './handlers/classHandler';
 
 
 
 function App() {
   const [isAdding, setIsAdding] = useState(false);
   const [nameOfClass, setNameOfClass] = useState('');
+  const [error, setError] = useState(false);
+  const [latestClass, setLatestClass] = useState('');
 
   function changeAdd() {
     if (!isAdding) setIsAdding(true);
@@ -18,11 +21,18 @@ function App() {
     setNameOfClass(event.target.value);
   }
 
-  function addClass(event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-    console.log(nameOfClass);
+  function reset() {
     setNameOfClass('');
+    setError(false);
     setIsAdding(false);
+  }
+
+  async function createClass(event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+
+    const { created: createdClass } = await handleCreateClass(event, nameOfClass);
+
+    createdClass ? (setLatestClass(createdClass.class), reset()) : setError(true);
   }
 
   return (
@@ -36,13 +46,13 @@ function App() {
               Add Class
             </button>}
         </div>
-          <BookShelf />
-          <AddForm 
+        <BookShelf latestClass={latestClass} />
+        <AddForm
           showForm={isAdding}
           onChange={updateClass}
-          onSubmit={addClass}
+          onSubmit={createClass}
           value={nameOfClass} />
-
+        {error && <p id='warning'>Class Already Exists</p>}
       </div>
     </div>
   )

@@ -9,7 +9,7 @@ const hw = new Schema ({
 })
 
 function validator(val: []) {
-    return Array.isArray(val) && val.length > 0;
+    return Array.isArray(val);
 }
 
 const ClassHWSchema = new Schema({

@@ -1,8 +1,8 @@
 import THW from "./THW";
 
 type TClassHW = {
-    class: String,
-    assignments: [THW],
+    class: string,
+    assignments: [THW?],
 }
 
 export default TClassHW;
