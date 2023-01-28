@@ -4,12 +4,22 @@ import mongoose from "mongoose";
 const Schema = mongoose.Schema;
 
 const hw = new Schema ({
-    name: {type: String, required: true},
-    dueDate: {type: Date, required: true, default: Date.now},
+    name: {
+        type: String, 
+        required: true
+    },
+    dueDate: {
+        type: Date, 
+        required: true, 
+        default: Date.now},
 })
 
-function validator(val: []) {
+function assignmentValidator(val: []) {
     return Array.isArray(val);
+}
+
+function classValidator(val: string) {
+    return val.trim();
 }
 
 const ClassHWSchema = new Schema({
@@ -17,10 +27,11 @@ const ClassHWSchema = new Schema({
         type: String, 
         required: true,
         unique: true,
+        validate: classValidator,
     },
     assignments: {
         type: [hw],
-        validate : validator,
+        validate : assignmentValidator,
     }
 });
 

@@ -18,6 +18,7 @@ export async function getAllClassNames(req: Request, res: Response) {
 }
 
 export async function createNewClass(req: Request, res: Response ) {
+
     try {
         const initialized = await ClassHW.syncIndexes();
         const newClass = new ClassHW({

@@ -30,6 +30,7 @@ function App() {
   async function createClass(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    
     const { created: createdClass } = await handleCreateClass(event, nameOfClass);
 
     createdClass ? (setLatestClass(createdClass.class), reset()) : setError(true);
@@ -52,7 +53,7 @@ function App() {
           onChange={updateClass}
           onSubmit={createClass}
           value={nameOfClass} />
-        {error && <p id='warning'>Class Already Exists</p>}
+        {error && <p id='warning'>Please enter a valid class</p>}
       </div>
     </div>
   )
