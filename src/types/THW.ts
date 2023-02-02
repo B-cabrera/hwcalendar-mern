@@ -1,6 +1,8 @@
 type THW = {
-    name: String,
+    _id: number
+    name: string,
     dueDate: Date,
+    finished: boolean
 }
 
 export default THW;

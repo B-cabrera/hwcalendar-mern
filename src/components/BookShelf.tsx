@@ -20,7 +20,10 @@ export default function BookShelf({latestClass}: TBookShelfProps) {
         <ul id="books">
             {
                 classes?.map((aClass)=> (
-                    <Link to={`/${aClass._id}`}>{aClass.class}</Link>
+                    <Link 
+                    to={`/${aClass._id}`}
+                    key={aClass._id}
+                    >{aClass.class}</Link>
                 ))
             }
         </ul>

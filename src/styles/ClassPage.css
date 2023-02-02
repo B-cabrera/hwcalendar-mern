@@ -4,6 +4,7 @@ td {
     font-family: Raleway;
     font-size: 20px;
     list-style: none;
+    letter-spacing: 5px;
 }
 table {
     border-spacing: 100px 10px;

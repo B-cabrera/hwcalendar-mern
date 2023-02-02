@@ -11,7 +11,13 @@ const hw = new Schema ({
     dueDate: {
         type: Date, 
         required: true, 
-        default: Date.now},
+        default: Date.now
+    },
+    finished: {
+        type: Boolean,
+        default: false,
+    }
+    
 })
 
 function assignmentValidator(val: []) {

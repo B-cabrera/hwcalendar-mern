@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import TClassHW from "../../types/TClassHW";
+import THW from "../../types/THW";
 import ClassHW from "../model/Classes";
 
 export async function getAllClassNames(req: Request, res: Response) {
@@ -16,7 +17,7 @@ export async function getAllClassNames(req: Request, res: Response) {
     }
 }
 
-export async function createNewClass(req: Request, res: Response ) {
+export async function createNewClass(req: Request, res: Response) {
 
     try {
         const initialized = await ClassHW.syncIndexes();
@@ -35,13 +36,13 @@ export async function createNewClass(req: Request, res: Response ) {
     }
 }
 
-export async function getAssignmentsByClassID(req: Request, res: Response ) {
+export async function getAssignmentsByClassID(req: Request, res: Response) {
     const id = req.params.id;
 
     try {
         const theClass = await ClassHW.findById(id) as TClassHW;
         const theAssignments = theClass.assignments;
-        
+
         res.status(200);
         res.json(theAssignments);
     } catch (error) {
@@ -50,4 +51,27 @@ export async function getAssignmentsByClassID(req: Request, res: Response ) {
     }
 
 
+}
+
+
+export async function toggleAssignment(req: Request, res: Response) {
+    const hwID = req.body.hwID;
+    const classID = req.body.classID;
+    const changedValue = req.body.finished;
+
+
+    try {
+        const theClass = await ClassHW.findById(classID);
+        const theAssignment = await theClass?.assignments.id(hwID);
+        
+        if (theAssignment) theAssignment.finished = changedValue;
+
+        theClass?.save();
+
+        res.status(200);
+        res.send(changedValue);
+    } catch (err) {
+        res.status(500);
+        res.send("Couldn't update");
+    }
 }

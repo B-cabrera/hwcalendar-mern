@@ -1,0 +1,21 @@
+#outer {
+    background-color: rgb(80, 80, 80);
+    width: 25px;
+    height: 25px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+
+#outer:hover {
+    background-color: rgb(156, 156, 156);
+}
+
+
+
+#inner {
+    background-color: white;
+    width: 15px;
+    height: 15px;
+}
