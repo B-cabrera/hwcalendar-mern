@@ -10,8 +10,7 @@ const hw = new Schema ({
     },
     dueDate: {
         type: Date, 
-        required: true, 
-        default: Date.now
+        required: true,
     },
     finished: {
         type: Boolean,

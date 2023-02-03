@@ -1,5 +1,5 @@
 type THW = {
-    _id: number
+    _id?: number
     name: string,
     dueDate: Date,
     finished: boolean

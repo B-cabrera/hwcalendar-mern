@@ -6,6 +6,9 @@ export async function handleCreateClass(event: FormEvent<HTMLFormElement>, nameO
 Promise<{created: TClassHW | null}>{
     event.preventDefault();
 
+    // validating before fetching
+    if (!nameOfClass || nameOfClass.trim().length == 0) return {created: null};
+    
     const newClass: TClassHW = {
         class: nameOfClass,
         assignments: []
@@ -34,32 +37,4 @@ export async function handleGetAllClasses(): Promise<TClassHW[] | null> {
 
 
     return allClasses;
-}
-
-export async function handleGetAssignmentByClassID(id: string | undefined) {
-    const response = await fetch(`http://localhost:4008/api/${id}`);
-    const classAssignments = response.status == 404 ? null : await response.json() as [THW];
-
-
-    return classAssignments;
-}
-
-
-export async function handleToggleAssignment(classID: string | undefined,hwID: number, updatedToggle: boolean) {
-    const response = await fetch("http://localhost:4008/api/assignment", {
-        method: 'PATCH',
-        headers: {
-            'Content-Type': 'application/json'
-        },
-        body: JSON.stringify({
-            classID: classID,
-            hwID: hwID,
-            finished: updatedToggle,
-        })
-    });
-    const newToggleValue = response.status == 500 ? null: await response.json() as boolean;
-
-
-    return newToggleValue;
-
 }

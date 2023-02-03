@@ -5,73 +5,50 @@ import ClassHW from "../model/Classes";
 
 export async function getAllClassNames(req: Request, res: Response) {
 
-    try {
-        const allClasses = await ClassHW.find() as TClassHW[];
+  try {
+    const allClasses = await ClassHW.find() as TClassHW[];
 
 
-        res.status(200);
-        res.json(allClasses);
-    } catch (error) {
-        res.status(500);
-        res.send("No no no");
-    }
+    res.status(200);
+    res.json(allClasses);
+  } catch (error) {
+    res.status(500);
+    res.send("No no no");
+  }
 }
 
 export async function createNewClass(req: Request, res: Response) {
 
-    try {
-        const initialized = await ClassHW.syncIndexes();
-        const newClass = new ClassHW({
-            class: req.body.class,
-            assignments: req.body.assignments,
-        })
+  try {
+    const initialized = await ClassHW.syncIndexes();
+    const newClass = new ClassHW({
+      class: req.body.class,
+      assignments: req.body.assignments,
+    })
 
-        const insertedClass = await newClass.save();
+    const insertedClass = await newClass.save();
 
-        res.status(201)
-        res.json(insertedClass);
-    } catch (error) {
-        res.status(400);
-        res.send("No no no");
-    }
+    res.status(201)
+    res.json(insertedClass);
+  } catch (error) {
+    res.status(400);
+    res.send("No no no");
+  }
 }
 
 export async function getAssignmentsByClassID(req: Request, res: Response) {
-    const id = req.params.id;
+  const id = req.params.id;
 
-    try {
-        const theClass = await ClassHW.findById(id) as TClassHW;
-        const theAssignments = theClass.assignments;
+  try {
+    const theClass = await ClassHW.findById(id) as TClassHW;
+    const theAssignments = theClass.assignments;
 
-        res.status(200);
-        res.json(theAssignments);
-    } catch (error) {
-        res.status(404)
-        res.send(`No class with id: ${id}`)
-    }
-
-
-}
+    res.status(200);
+    res.json(theAssignments);
+  } catch (error) {
+    res.status(404)
+    res.send(`No class with id: ${id}`)
+  }
 
 
-export async function toggleAssignment(req: Request, res: Response) {
-    const hwID = req.body.hwID;
-    const classID = req.body.classID;
-    const changedValue = req.body.finished;
-
-
-    try {
-        const theClass = await ClassHW.findById(classID);
-        const theAssignment = await theClass?.assignments.id(hwID);
-        
-        if (theAssignment) theAssignment.finished = changedValue;
-
-        theClass?.save();
-
-        res.status(200);
-        res.send(changedValue);
-    } catch (err) {
-        res.status(500);
-        res.send("Couldn't update");
-    }
 }

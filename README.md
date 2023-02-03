@@ -9,8 +9,8 @@ A personal project to practice developing a web application with the MERN stack 
 - User Auth to allow for individual calendars/reminders
 
 ### Progress
-Current Phase: Building assignments page.
-Next Phase: Implementing form to create assignment.
+Current Phase: Implementing form to create assignment
+Next Phase: Implementing delete classes and assignments
 
 #### Contact
 I am open to all comments about improving the code and overall improvements.  

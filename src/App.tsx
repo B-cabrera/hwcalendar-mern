@@ -1,6 +1,6 @@
 import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react'
 import './styles/App.css'
-import AddForm from './components/AddClassForm';
+import AddClassForm from './components/AddClassForm';
 import NavBar from './components/NavBar';
 import BookShelf from './components/BookShelf';
 import { handleCreateClass, handleGetAllClasses } from './handlers/classHandler';
@@ -49,7 +49,7 @@ function App() {
             </button>}
         </div>
         <BookShelf latestClass={latestClass} />
-        <AddForm
+        <AddClassForm
           showForm={isAdding}
           onChange={updateClass}
           onSubmit={createClass}
