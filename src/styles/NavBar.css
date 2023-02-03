@@ -4,6 +4,7 @@
     width: 100%;
     top: 0;
     margin-top: 0;
+    align-items: center;
 }
 
 #navbar h1 {
@@ -13,5 +14,11 @@
 
 
 #navbar a {
+    font-family: Raleway;
+    font-weight: 900;
     color:rgb(176, 176, 176);
+}
+
+#logo{
+  height: 100px;
 }
