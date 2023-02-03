@@ -14,6 +14,7 @@ export default function AddAssignmentForm({ showForm, onChange, onSubmit, value,
             value={value}
             onChange={onChange}
             style={{marginRight: '20px'}}
+            autoComplete='off'
           />
           <input 
           type="date" 

@@ -11,7 +11,8 @@ export default function AddClassForm({showForm, onChange, onSubmit, value} : For
                 <input
                     id="classinput"
                     value={value}
-                    onChange={onChange}/>
+                    onChange={onChange}
+                    autoComplete="off"/>
                 <button id="submitbtn">Enter</button>
             </form>}
 

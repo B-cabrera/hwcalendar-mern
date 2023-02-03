@@ -6,7 +6,10 @@ import ClassHW from "../model/Classes";
 export async function getAllClassNames(req: Request, res: Response) {
 
   try {
-    const allClasses = await ClassHW.find() as TClassHW[];
+    const allClasses = await ClassHW.aggregate([
+      {$project : {"class": 1, "class_length": {$strLenCP: "$class"}}},
+      {$sort: {"class_length": 1}}
+    ]) as TClassHW[];
 
 
     res.status(200);
@@ -34,21 +37,4 @@ export async function createNewClass(req: Request, res: Response) {
     res.status(400);
     res.send("No no no");
   }
-}
-
-export async function getAssignmentsByClassID(req: Request, res: Response) {
-  const id = req.params.id;
-
-  try {
-    const theClass = await ClassHW.findById(id) as TClassHW;
-    const theAssignments = theClass.assignments;
-
-    res.status(200);
-    res.json(theAssignments);
-  } catch (error) {
-    res.status(404)
-    res.send(`No class with id: ${id}`)
-  }
-
-
 }

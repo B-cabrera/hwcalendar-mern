@@ -1,6 +1,5 @@
 import { Request, Response } from "express";
 import TClassHW from "../../types/TClassHW";
-import THW from "../../types/THW";
 import ClassHW from "../model/Classes";
 
 export async function toggleAssignment(req: Request, res: Response) {
@@ -49,4 +48,21 @@ export async function createNewAssignment(req: Request, res: Response) {
     res.status(400);
     res.send("Couldn't create assignment");
   }
+}
+
+export async function getAssignmentsByClassID(req: Request, res: Response) {
+  const id = req.params.id;
+
+  try {
+    const theClass = await ClassHW.findById(id) as TClassHW;
+    const theAssignments = theClass.assignments.sort((a,b) => Number(a?.finished) - Number(b?.finished));
+
+    res.status(200);
+    res.json(theAssignments);
+  } catch (error) {
+    res.status(404)
+    res.send(`No class with id: ${id}`)
+  }
+
+
 }
