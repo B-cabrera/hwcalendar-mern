@@ -26,7 +26,7 @@ export default function ClassPage() {
     getAssignments();
   }, [updated])
 
-  function toggleCheckBox(event: MouseEvent<HTMLDivElement>, oldValue: boolean, assignmentID: number) {
+  function toggleCheckBox(event: MouseEvent<HTMLButtonElement>, oldValue: boolean, assignmentID: number) {
     const value = !oldValue;
 
     handleToggleAssignment(id, assignmentID, value).then((toggledValue) => {
@@ -78,7 +78,7 @@ export default function ClassPage() {
                   <td>
                     <CheckBox
                       checked={assignment.finished}
-                      onClick={(event: MouseEvent<HTMLDivElement>) =>
+                      onClick={(event: MouseEvent<HTMLButtonElement>) =>
                         toggleCheckBox(event, assignment.finished, assignment._id!)
                       } />
                   </td>
