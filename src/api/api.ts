@@ -1,8 +1,8 @@
 import { Router } from 'express';
 import { createNewAssignment, getAssignmentsByClassID, toggleAssignment } from './controllers/assignmentController';
 import {
-    createNewClass,
-    getAllClassNames,
+  createNewClass,
+  getAllClassNames,
 } from './controllers/classController';
 
 const router = Router();

@@ -29,9 +29,9 @@ export async function handleToggleAssignment(classID: string | undefined, hwID: 
 }
 
 export async function handleCreateAssignment(nameOfHW: string, dateOfHW: Date | undefined, classID: string | undefined) {
-  
+
   if (!nameOfHW || !dateOfHW) return null;
-  
+
   const newHW: THW = {
     name: nameOfHW,
     dueDate: dateOfHW!,

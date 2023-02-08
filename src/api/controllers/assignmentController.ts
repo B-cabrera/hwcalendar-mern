@@ -55,7 +55,7 @@ export async function getAssignmentsByClassID(req: Request, res: Response) {
 
   try {
     const theClass = await ClassHW.findById(id) as TClassHW;
-    const theAssignments = theClass.assignments.sort((a,b) => Number(a?.finished) - Number(b?.finished));
+    const theAssignments = theClass.assignments.sort((a, b) => Number(a?.finished) - Number(b?.finished));
 
     res.status(200);
     res.json(theAssignments);

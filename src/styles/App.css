@@ -1,29 +1,29 @@
 #App {
-    display: flex;
-    flex-direction: column;
+  display: flex;
+  flex-direction: column;
 }
 
 #logo {
-    padding-right: 5px;
+  padding-right: 5px;
 }
 
 #content {
-    display: flex;
-    gap: 80px;
-    align-items: center;
-    flex-direction: column;
-    margin-top: 10px;
-    height: 100vh;
-    color: #fff;
+  display: flex;
+  gap: 80px;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 10px;
+  height: 100vh;
+  color: #fff;
 }
 
 #submitbtn {
-    margin-left: 10px;
+  margin-left: 10px;
 }
 
 #warning {
-    font-family: Raleway;
-    color: red;
-    font-weight: 900;
-    font-size: 25px;
+  font-family: Raleway;
+  color: red;
+  font-weight: 900;
+  font-size: 25px;
 }

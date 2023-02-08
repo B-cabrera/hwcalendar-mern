@@ -7,8 +7,8 @@ export async function getAllClassNames(req: Request, res: Response) {
 
   try {
     const allClasses = await ClassHW.aggregate([
-      {$project : {"class": 1, "class_length": {$strLenCP: "$class"}}},
-      {$sort: {"class_length": 1}}
+      { $project: { "class": 1, "class_length": { $strLenCP: "$class" } } },
+      { $sort: { "class_length": 1 } }
     ]) as TClassHW[];
 
 

@@ -45,14 +45,14 @@ export default function ClassPage() {
   function updateHWName(event: ChangeEvent<HTMLInputElement>) {
     setHwName(event.target.value);
   }
-  
+
   function updateHWDate(event: ChangeEvent<HTMLInputElement>) {
     setHwDate(new Date(event.target.value));
   }
 
   async function addHW(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
-    
+
     const createdHW = await handleCreateAssignment(hwName, hwDate, id);
     createdHW ? reset() : setIsValid(false);
 

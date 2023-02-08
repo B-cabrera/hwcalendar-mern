@@ -1,42 +1,42 @@
 #books {
-    display: flex;
-    flex-direction: column;
-    align-items: center;
-    text-align: center;
-    padding: 0px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  text-align: center;
+  padding: 0px;
 }
 
-#books a{
-    color: black;
-    width: fit-content;
-    list-style: none;
-    letter-spacing: 1px; 
-    border-radius: 10px;
-    padding: 5px 40px 5px 40px;
-    font-size: 20px;
-    font-family: Raleway;
-    font-weight: 900;
-    background:#ffebeb;
-    margin-bottom: 10px;
+#books a {
+  color: black;
+  width: fit-content;
+  list-style: none;
+  letter-spacing: 1px;
+  border-radius: 10px;
+  padding: 5px 40px 5px 40px;
+  font-size: 20px;
+  font-family: Raleway;
+  font-weight: 900;
+  background: #ffebeb;
+  margin-bottom: 10px;
 }
 
 #books a:hover {
-    opacity: .8;
-    cursor: pointer;
+  opacity: .8;
+  cursor: pointer;
 }
 
 #books::after {
-    content: '';
-    border: 5px solid #000;
-    min-width: 500px;
-    width: 50vw;
+  content: '';
+  border: 5px solid #000;
+  min-width: 500px;
+  width: 50vw;
 }
 
 a:link {
-    text-decoration: none;
-    color:#000;
+  text-decoration: none;
+  color: #000;
 }
 
 a:visited {
-    color: #000;
+  color: #000;
 }
