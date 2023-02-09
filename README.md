@@ -9,7 +9,6 @@ A personal project to practice developing a web application with the MERN stack 
 - User Auth to allow for individual calendars/reminders
 
 ### Reminders
-- [ ] Fix scrolling above navbar without hiding body overflow
 - [ ] Getting a fixed number of hws and class at once, essentially dividing all into "pages"
   - [ ] OR allowing scrolling to see all classes/hws
 
