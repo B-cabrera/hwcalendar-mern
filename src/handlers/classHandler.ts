@@ -38,3 +38,15 @@ export async function handleGetAllClasses(): Promise<TClassHW[] | null> {
 
   return allClasses;
 }
+
+
+export async function handleDeleteClass(classID: number) {
+  const response = await fetch(`http://localhost:4008/api/class/${classID}`, {
+    method: "DELETE"
+  })
+
+  const didDelete = response.status != 500 
+
+
+  return didDelete;
+}

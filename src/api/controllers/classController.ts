@@ -38,3 +38,19 @@ export async function createNewClass(req: Request, res: Response) {
     res.send("No no no");
   }
 }
+
+
+
+export async function deleteClass(req: Request, res: Response) {
+  const id = req.params.id;
+
+  try {
+    const deleted = await ClassHW.deleteOne({_id: id});
+
+    res.status(204);
+    res.send("Deletion Success");
+  } catch (err) {
+    res.status(500)
+    res.send("Deletion failed");
+  }
+}
