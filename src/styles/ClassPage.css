@@ -23,3 +23,17 @@ table {
   align-items: center;
   gap: 80px;
 }
+
+#remove{
+  background: none;
+}
+
+#remove:hover{
+  color: grey;
+}
+
+#remove:focus { 
+  color: grey
+}
+
+

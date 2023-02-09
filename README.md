@@ -7,14 +7,15 @@ A personal project to practice developing a web application with the MERN stack 
 ### Ideas
 - Integration with Google Calendar using API.
 - User Auth to allow for individual calendars/reminders
+- Using tailwind for css 
 
 ### Reminders
 - [ ] Getting a fixed number of hws and class at once, essentially dividing all into "pages"
   - [ ] OR allowing scrolling to see all classes/hws
 
 ### Progress
-Current Phase: Implementing delete classes and assignments
-Next Phase: Implementing the ability to update classes, hw names, and hw dates
+Current Phase: Implementing the ability to update classes, hw names, and hw dates
+Next Phase: Looking into google calendar api
 
 #### Contact
 I am open to all comments about improving the code and overall improvements.  

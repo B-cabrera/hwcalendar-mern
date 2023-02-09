@@ -57,3 +57,15 @@ export async function handleCreateAssignment(nameOfHW: string, dateOfHW: Date | 
 
 
 }
+
+
+
+export async function handleDeleteAssignment(hwID: number | undefined, classID: string | undefined) {
+  const response = await fetch(`http://localhost:4008/api/assignment/${hwID}/${classID}`, {
+    method: "DELETE",
+  })
+
+  const didDelete = response.status != 500;
+
+  return didDelete;
+}

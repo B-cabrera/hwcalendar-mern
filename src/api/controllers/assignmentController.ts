@@ -64,5 +64,24 @@ export async function getAssignmentsByClassID(req: Request, res: Response) {
     res.send(`No class with id: ${id}`)
   }
 
+}
 
+
+export async function deleteAssignment(req: Request, res: Response) {
+  const idOfHW = req.params.hwID;
+  const idOfClass = req.params.classID;
+
+  try {
+    const theClass = await ClassHW.findById(idOfClass);
+
+    await theClass?.assignments.remove({_id: idOfHW});
+
+    await theClass?.save();
+
+    res.status(204);
+    res.send("Deletion Success");
+  } catch (error) {
+    res.status(500);
+    res.send("Deletion Failed");
+  }
 }
