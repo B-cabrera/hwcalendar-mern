@@ -1,3 +1,5 @@
+![HwCalendar Logo](https://github.com/B-cabrera/hwcalendar-mern/blob/main/src/assets/HwCalendarLogo.png?raw=true)
+
 # HwCalendar
 A web application where you can add HW with due dates based on class and be reminded using (NOT YET CHOSEN).
 
@@ -14,7 +16,7 @@ A personal project to practice developing a web application with the MERN stack 
   - [ ] OR allowing scrolling to see all classes/hws
 
 ### Progress
-Current Phase: Implementing the ability to update classes, hw names, and hw dates
+Current Phase: Implementing the ability to update classes, hw names, and hw dates  
 Next Phase: Looking into google calendar api
 
 #### Contact
