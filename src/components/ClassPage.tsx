@@ -1,12 +1,10 @@
-import { ChangeEvent, FormEvent, MouseEvent, useEffect, useState } from "react"
-import { useParams } from "react-router-dom"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import { useLocation, useParams } from "react-router-dom"
 import THW from "../types/THW";
 import "../styles/ClassPage.css"
-import CheckBox from "./CheckBox";
 import NavBar from "./NavBar";
 import AddAssignmentForm from "./AddAssignmentForm";
-import { handleCreateAssignment, handleDeleteAssignment, handleGetAssignmentByClassID, handleToggleAssignment, handleUpdateAssignment } from "../handlers/assignmentHandler";
-import UpdateField from "./UpdateField";
+import { handleCreateAssignment, handleGetAssignmentByClassID } from "../handlers/assignmentHandler";
 import UpdatableRow from "./UpdatableRow";
 import { validateString } from "../App";
 
@@ -17,7 +15,8 @@ export default function ClassPage() {
   const [hwName, setHwName] = useState('');
   const [hwDate, setHwDate] = useState<Date>();
   const [isValid, setIsValid] = useState(true);
-  const { id } = useParams()
+  const { id } = useParams();
+  const {state} = useLocation();
 
   useEffect(() => {
     async function getAssignments() {
@@ -62,9 +61,11 @@ export default function ClassPage() {
     if (!isAddingAssignment) setIsAddingAssignment(true);
   }
 
+
   return (
     <div id='page'>
       <NavBar />
+      <h1 id="nameOfClass">{state.className}</h1>
       {!isAddingAssignment &&
         <button
           onClick={changeAddAssigment}>

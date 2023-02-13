@@ -41,6 +41,10 @@ function App() {
   async function createClass(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    if (!validateString(nameOfClass)) {
+      setError(true);
+      return
+    }
 
     const { created: createdClass } = await handleCreateClass(event, nameOfClass);
 
