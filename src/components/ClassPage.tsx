@@ -8,6 +8,7 @@ import AddAssignmentForm from "./AddAssignmentForm";
 import { handleCreateAssignment, handleDeleteAssignment, handleGetAssignmentByClassID, handleToggleAssignment, handleUpdateAssignment } from "../handlers/assignmentHandler";
 import UpdateField from "./UpdateField";
 import UpdatableRow from "./UpdatableRow";
+import { validateString } from "../App";
 
 export default function ClassPage() {
   const [assignments, setAssignments] = useState<THW[] | null>();
@@ -47,6 +48,11 @@ export default function ClassPage() {
   async function addHW(event: FormEvent<HTMLFormElement>) {
     event.preventDefault();
 
+    if (!validateString(hwName)) {
+      setIsValid(false)
+      return
+    }
+
     const createdHW = await handleCreateAssignment(hwName, hwDate, id);
     createdHW ? reset() : setIsValid(false);
 
@@ -83,7 +89,7 @@ export default function ClassPage() {
         onSubmit={addHW}
         value={hwName}
       />
-      {!isValid && <h2 id="warning">Please fill out all fields</h2>}
+      {!isValid && <h2 id="warning">Input Invalid</h2>}
     </div>
   )
 }
