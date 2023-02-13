@@ -5,7 +5,9 @@ import "../styles/ClassPage.css"
 import CheckBox from "./CheckBox";
 import NavBar from "./NavBar";
 import AddAssignmentForm from "./AddAssignmentForm";
-import { handleCreateAssignment, handleDeleteAssignment, handleGetAssignmentByClassID, handleToggleAssignment } from "../handlers/assignmentHandler";
+import { handleCreateAssignment, handleDeleteAssignment, handleGetAssignmentByClassID, handleToggleAssignment, handleUpdateAssignment } from "../handlers/assignmentHandler";
+import UpdateField from "./UpdateField";
+import UpdatableRow from "./UpdatableRow";
 
 export default function ClassPage() {
   const [assignments, setAssignments] = useState<THW[] | null>();
@@ -26,14 +28,6 @@ export default function ClassPage() {
     getAssignments();
   }, [updated])
 
-  function toggleCheckBox(event: MouseEvent<HTMLButtonElement>, oldValue: boolean, assignmentID: number) {
-    const value = !oldValue;
-
-    handleToggleAssignment(id, assignmentID, value).then((toggledValue) => {
-      setUpdated(!updated);
-    })
-
-  }
   function reset() {
     setUpdated(!updated);
     setIsAddingAssignment(false);
@@ -61,12 +55,7 @@ export default function ClassPage() {
   function changeAddAssigment() {
     if (!isAddingAssignment) setIsAddingAssignment(true);
   }
-
-  async function deleteAssignment(hwID: number | undefined) {
-    const deleted = await handleDeleteAssignment(hwID, id);
-
-    if (deleted) setUpdated(!updated);
-  }
+  
   return (
     <div id='page'>
       <NavBar />
@@ -78,20 +67,13 @@ export default function ClassPage() {
       <div id="hws">
         <table>
           {
-            assignments?.map((assignment, index) => (
-              <tbody key={index}>
-                <tr>
-                  <td>
-                    <CheckBox
-                      checked={assignment.finished}
-                      onClick={(event: MouseEvent<HTMLButtonElement>) =>
-                        toggleCheckBox(event, assignment.finished, assignment._id!)
-                      } />
-                  </td>
-                  <td>{assignment.name.toUpperCase()}</td>
-                  <td>{new Date(assignment.dueDate).toLocaleDateString()}</td>
-                  <td><button id="remove" onClick={() => deleteAssignment(assignment._id)}>x</button></td>
-                </tr>
+            assignments?.map((assignment) => (
+              <tbody key={assignment._id}>
+                <UpdatableRow 
+                  hw={assignment}
+                  classID={id!}
+                  update={() => setUpdated(!updated)}
+                />
               </tbody>
             ))
           }

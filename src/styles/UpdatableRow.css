@@ -1,0 +1,15 @@
+#remove{
+  background: none;
+}
+
+#remove:hover{
+  color: grey;
+}
+
+#error {
+  color: red;
+  font-family: Raleway;
+  font-weight: 900;
+  font-size: 20px;
+  text-align: center;
+}

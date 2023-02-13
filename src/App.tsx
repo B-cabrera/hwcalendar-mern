@@ -6,7 +6,17 @@ import BookShelf from './components/BookShelf';
 import { handleCreateClass, handleGetAllClasses } from './handlers/classHandler';
 import TClassHW from './types/TClassHW';
 
+export function validateString(data: string) {
+  if (data.length <= 0 ||
+    data.includes('$') ||
+    data.includes('{') ||
+    data.includes('}') ||
+    data.includes(':')
+  ) return false
 
+
+  return true
+}
 
 function App() {
   const [isAdding, setIsAdding] = useState(false);

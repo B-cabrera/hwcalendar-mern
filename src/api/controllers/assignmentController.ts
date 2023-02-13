@@ -74,7 +74,7 @@ export async function deleteAssignment(req: Request, res: Response) {
   try {
     const theClass = await ClassHW.findById(idOfClass);
 
-    await theClass?.assignments.remove({_id: idOfHW});
+    await theClass?.assignments.remove({ _id: idOfHW });
 
     await theClass?.save();
 
@@ -84,4 +84,34 @@ export async function deleteAssignment(req: Request, res: Response) {
     res.status(500);
     res.send("Deletion Failed");
   }
+}
+
+
+export async function updateAssignment(req: Request, res: Response) {
+  const hwID = req.params.id;
+  const idOfClass = req.body.classID;
+  const newName = req.body.name;
+  const newDate = req.body.date;
+
+
+  try {
+    const theClass = await ClassHW.findById(idOfClass);
+    const theAssignment = await theClass?.assignments.id(hwID);
+
+    if (theAssignment) {
+      theAssignment.name = newName;
+      theAssignment.dueDate = newDate;
+    }
+
+    await theClass?.save();
+
+    res.status(200);
+    res.send('Updated Successfuly');
+  } catch (err) {
+    res.status(500);
+    res.send("Couldn't update");
+  }
+
+
+
 }

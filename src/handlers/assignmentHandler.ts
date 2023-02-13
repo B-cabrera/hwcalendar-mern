@@ -69,3 +69,25 @@ export async function handleDeleteAssignment(hwID: number | undefined, classID: 
 
   return didDelete;
 }
+
+
+
+export async function handleUpdateAssignment(name: string, date: string, assignmentID: number, classID: string) {
+  
+  const response = await fetch(`http://localhost:4008/api/assignment/${assignmentID}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      classID,
+      name,
+      date: new Date(date),
+    })
+  })
+
+
+  const didUpdate = response.status == 200;
+
+  return didUpdate;
+}
