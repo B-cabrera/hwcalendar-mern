@@ -15,8 +15,7 @@ export default function ClassPage() {
   const [hwName, setHwName] = useState('');
   const [hwDate, setHwDate] = useState<Date>();
   const [isValid, setIsValid] = useState(true);
-  const { id } = useParams();
-  const {state} = useLocation();
+  const { id, className } = useParams();
 
   useEffect(() => {
     async function getAssignments() {
@@ -65,7 +64,7 @@ export default function ClassPage() {
   return (
     <div id='page'>
       <NavBar />
-      <h1 id="nameOfClass">{state.className}</h1>
+      <h1 id="nameOfClass">{className}</h1>
       {!isAddingAssignment &&
         <button
           onClick={changeAddAssigment}>

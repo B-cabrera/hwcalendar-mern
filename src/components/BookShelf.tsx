@@ -33,9 +33,8 @@ export default function BookShelf({ latestClass }: TBookShelfProps) {
       {
         classes?.map((aClass) => (
           <Link
-            to={`/${aClass._id}`}
+            to={`/${aClass.class}/${aClass._id}`}
             key={aClass._id}
-            state={{className: aClass.class}}
           >
             {aClass.class}
             <button

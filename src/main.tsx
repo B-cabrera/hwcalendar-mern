@@ -9,7 +9,7 @@ const router = createBrowserRouter([{
   path: "/",
   element: <App />
 }, {
-  path: "/:id",
+  path: "/:className/:id",
   element: <ClassPage />
 }])
 

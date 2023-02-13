@@ -11,7 +11,9 @@ export function validateString(data: string) {
     data.includes('$') ||
     data.includes('{') ||
     data.includes('}') ||
-    data.includes(':')
+    data.includes(':') ||
+    data.includes('/') ||
+    data.includes('\\')
   ) return false
 
 
