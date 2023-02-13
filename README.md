@@ -18,7 +18,7 @@ A personal project to practice developing a web application with the MERN stack 
   - [ ] OR allowing scrolling to see all classes/hws
 
 ### Progress
-Current Phase: Implementing the ability to update classes 
+Current Phase: Implementing the ability to update class name  
 Next Phase: Fixing problems
 
 #### Contact
