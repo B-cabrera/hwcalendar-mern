@@ -55,7 +55,7 @@ export default function ClassPage() {
   function changeAddAssigment() {
     if (!isAddingAssignment) setIsAddingAssignment(true);
   }
-  
+
   return (
     <div id='page'>
       <NavBar />
@@ -65,19 +65,16 @@ export default function ClassPage() {
           Add HW
         </button>}
       <div id="hws">
-        <table>
-          {
-            assignments?.map((assignment) => (
-              <tbody key={assignment._id}>
-                <UpdatableRow 
-                  hw={assignment}
-                  classID={id!}
-                  update={() => setUpdated(!updated)}
-                />
-              </tbody>
-            ))
-          }
-        </table>
+        {
+          assignments?.map((assignment) => (
+            <UpdatableRow
+              key={assignment._id}
+              hw={assignment}
+              classID={id!}
+              update={() => setUpdated(!updated)}
+            />
+          ))
+        }
       </div>
       <AddAssignmentForm
         showForm={isAddingAssignment}

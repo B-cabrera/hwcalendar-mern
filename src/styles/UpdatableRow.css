@@ -3,7 +3,7 @@
 }
 
 #remove:hover{
-  color: grey;
+  color: red;
 }
 
 #error {
@@ -11,5 +11,14 @@
   font-family: Raleway;
   font-weight: 900;
   font-size: 20px;
+  grid-column: 1/-1;
   text-align: center;
+}
+
+
+#row {
+  display: inline-grid;
+  grid-template-columns: repeat(4, fit-content(300px));
+  word-break: break-word;
+  justify-content: space-between;
 }

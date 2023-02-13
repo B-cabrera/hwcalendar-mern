@@ -12,7 +12,7 @@ A personal project to practice developing a web application with the MERN stack 
 - Using tailwind for css 
 
 ### Reminders
-- [ ] Change to CSS grid instead of HTML table
+- [ ] Add cancel button when adding class and hw
 - [ ] Fix UI to be view perfectly on different screen sizes.
 - [ ] Getting a fixed number of hws and class at once, essentially dividing all into "pages"
   - [ ] OR allowing scrolling to see all classes/hws

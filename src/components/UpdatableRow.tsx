@@ -43,16 +43,16 @@ export default function UpdatableRow({ hw, classID: id, update }: UpdatableRowPr
     const minDate = new Date(Date.now());
     const maxDate = new Date('2100-12-31')
 
-    if (theDate.toString() == 'Invalid Date' || 
-        theDate.getTime() < minDate.getTime() ||
-        theDate.getTime() > maxDate.getTime()) return false;
+    if (theDate.toString() == 'Invalid Date' ||
+      theDate.getTime() < minDate.getTime() ||
+      theDate.getTime() > maxDate.getTime()) return false;
 
 
     return true;
   }
 
   async function submitData(event: FormEvent<HTMLFormElement>) {
-    
+
 
     if (!validateString(title) || !validateDate()) {
       event.preventDefault();
@@ -80,32 +80,24 @@ export default function UpdatableRow({ hw, classID: id, update }: UpdatableRowPr
   }
 
   return (
-    <>
-      <tr>
-        <td>
-          <CheckBox
-            checked={hw.finished}
-            onClick={() =>
-              toggleCheckBox(hw.finished, hw._id!)
-            } />
-        </td>
-        <td>
-          <UpdateField
-            initialValue={title}
-            onChange={updateTitle}
-            onSubmit={submitData}
-          />
-        </td>
-        <td>
-          <UpdateField
-            initialValue={date}
-            onChange={updateDate}
-            onSubmit={submitData}
-          />
-        </td>
-        <td><button id="remove" onClick={() => deleteAssignment(hw._id)}>x</button></td>
-      </tr>
-      {error && <tr><p id="error">BAD INPUT</p></tr>}
-    </>
+    <div id="row">
+      <CheckBox
+        checked={hw.finished}
+        onClick={() =>
+          toggleCheckBox(hw.finished, hw._id!)
+        } />
+      <UpdateField
+        initialValue={title}
+        onChange={updateTitle}
+        onSubmit={submitData}
+      />
+      <UpdateField
+        initialValue={date}
+        onChange={updateDate}
+        onSubmit={submitData}
+      />
+      <button id="remove" onClick={() => deleteAssignment(hw._id)}>x</button>
+      {error && <p id="error">BAD INPUT</p>}
+    </div>
   )
 }
