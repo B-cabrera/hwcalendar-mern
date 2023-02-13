@@ -50,3 +50,22 @@ export async function handleDeleteClass(classID: number) {
 
   return didDelete;
 }
+
+
+
+export async function handleUpdateClassName(classID: string, newName: string) {
+  const response = await fetch(`http://localhost:4008/api/class/${classID}`, {
+    method: 'PATCH',
+    headers: {
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({
+      newName
+    })
+  })
+
+
+  const didUpdate = response.status == 200;
+
+  return didUpdate;
+}

@@ -54,3 +54,21 @@ export async function deleteClass(req: Request, res: Response) {
     res.send("Deletion failed");
   }
 }
+
+
+export async function updateClassName(req: Request, res: Response) {
+  const id = req.params.id;
+  const newName = req.body.newName;
+
+  try {
+    const theClass = await ClassHW.findByIdAndUpdate(id, {
+      class: newName
+    })
+
+    res.status(200)
+    res.send("Updated Succesfully")
+  } catch(err) {
+    res.status(400)
+    res.send("Couldn't update");
+  }
+}

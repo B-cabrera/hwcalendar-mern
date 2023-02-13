@@ -4,6 +4,7 @@ import {
   createNewClass,
   deleteClass,
   getAllClassNames,
+  updateClassName,
 } from './controllers/classController';
 
 const router = Router();
@@ -14,6 +15,7 @@ router.post('/class', createNewClass)
 router.post('/assignment', createNewAssignment)
 router.patch('/assignment', toggleAssignment);
 router.patch('/assignment/:id', updateAssignment);
+router.patch('/class/:id', updateClassName)
 router.delete('/class/:id', deleteClass);
 router.delete('/assignment/:hwID/:classID', deleteAssignment)
 
