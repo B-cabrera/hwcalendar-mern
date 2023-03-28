@@ -9,7 +9,6 @@ A personal project to practice developing a web application with the MERN stack 
 ### Ideas
 - Integration with Google Calendar using API.
 - User Auth to allow for individual calendars/reminders
-- Using tailwind for css 
 
 ### Reminders
 - [ ] Add cancel button when adding class and hw
