@@ -11,12 +11,12 @@ A personal project to practice developing a web application with the MERN stack 
 - User Auth to allow for individual calendars/reminders
 
 ### Reminders
-- [ ] Fix UI to be view perfectly on different screen sizes.
+- [x] Fix UI to be view perfectly on different screen sizes.
 - [ ] Google Calendar API
 
 ### Progress
-Current Phase:  Fixing UI to be viewed perfectly on different screen sizes    
-Next Phase: User Auth
+Current Phase:  User Auth     
+Next Phase: Google Calendar API
 
 #### Contact
 I am open to all comments about improving the code and overall improvements.  

@@ -6,7 +6,7 @@ export default function AddClassForm({ showForm, onChange, onSubmit, value, chan
   return (
     <div id="bottom">
       {showForm &&
-        <form onSubmit={onSubmit}>
+        <form id="addform" onSubmit={onSubmit}>
           <label htmlFor="classinput">Enter the Class Name</label>
           <input
             id="classinput"

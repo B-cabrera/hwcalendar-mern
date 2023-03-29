@@ -1,4 +1,5 @@
 import TFormProps from "../types/TFormProps";
+import '../styles/AddAssignmentForm.css';
 
 
 export default function AddAssignmentForm({ showForm, onChange, onSubmit, value, onDateChange, changer }: TFormProps) {
@@ -7,7 +8,7 @@ export default function AddAssignmentForm({ showForm, onChange, onSubmit, value,
   return (
     <div>
       {showForm &&
-        <form onSubmit={onSubmit}>
+        <form id="addform" onSubmit={onSubmit}>
           <label htmlFor="hwinput">Assignment Name</label>
           <input
             id="hwinput"

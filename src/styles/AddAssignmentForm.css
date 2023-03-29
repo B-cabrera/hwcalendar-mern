@@ -1,0 +1,17 @@
+@media screen and (max-width: 450px) {
+  #addform {
+    display: grid;
+    gap: 10px;
+    place-items: center;
+    padding: 0;
+  }
+
+  #hwinput {
+    margin-right: 0px !important;
+  }
+  
+  #submitbtn {
+    margin-left: 0px;
+  }
+
+}

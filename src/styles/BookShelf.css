@@ -8,7 +8,6 @@
 #books a {
   display: flex;
   position: relative;
-  justify-content: space-between;
   align-items: center;
   color: black;
   width: fit-content;
@@ -32,7 +31,6 @@
   content: '';
   border: 5px solid #000;
   min-width: 500px;
-  width: 50vw;
 }
 
 a:link {
@@ -55,4 +53,12 @@ a:visited {
 
 #delete:hover {
   border: 1px solid black;
+}
+
+
+@media screen and (max-width: 450px) {
+  #books::after {
+    min-width: 70vw;
+  }
+
 }
