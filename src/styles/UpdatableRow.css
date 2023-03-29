@@ -22,3 +22,11 @@
   word-break: break-word;
   justify-content: space-between;
 }
+
+@media screen and (max-width: 450px) {
+  #row {
+    grid-template-columns: 1fr;
+    place-items: center;
+  }
+
+}

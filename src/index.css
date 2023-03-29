@@ -2,7 +2,7 @@
 
 body {
   overscroll-behavior: none;
-  background-color: #0a0a0af3;
+  background-color: rgb(39, 39, 39);
   margin: 0;
   height: 100%;
 }

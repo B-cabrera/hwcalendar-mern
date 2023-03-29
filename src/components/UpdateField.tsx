@@ -30,6 +30,11 @@ export default function UpdateField({ initialValue, onSubmit, onChange, classNam
               onChange={onChange}
             >
             </input>
+            <button
+            id="submitbtn"
+          >
+            Enter
+          </button>
           <button
             type="button"
             id="cancel"
