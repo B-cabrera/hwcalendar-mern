@@ -6,6 +6,7 @@ type TFormProps = {
   onSubmit: (event: FormEvent<HTMLFormElement>) => void,
   value: string,
   onDateChange?: (event: ChangeEvent<HTMLInputElement>) => void,
+  changer?: () => void
 }
 
 

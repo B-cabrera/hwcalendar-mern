@@ -23,13 +23,15 @@ export default function UpdateField({ initialValue, onSubmit, onChange, classNam
   return (
     <>
       {isChanging ?
-        <form onSubmit={onSubmit}>
-          <input
-            value={initialValue}
-            onChange={onChange}
-          >
-          </input>
+        <>
+          <form onSubmit={onSubmit}>
+            <input
+              value={initialValue}
+              onChange={onChange}
+            >
+            </input>
           <button
+            type="button"
             id="cancel"
             onClick={(e) => {
               e.preventDefault();
@@ -38,8 +40,8 @@ export default function UpdateField({ initialValue, onSubmit, onChange, classNam
           >
             Cancel
           </button>
-        </form>
-
+          </form>
+        </>
         : <button
           id="editable-text"
           className={className ? className : ""}

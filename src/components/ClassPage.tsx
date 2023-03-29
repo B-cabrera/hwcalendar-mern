@@ -117,6 +117,7 @@ export default function ClassPage() {
         onDateChange={updateHWDate}
         onSubmit={addHW}
         value={hwName}
+        changer = {() => setIsAddingAssignment(false)}
       />
       {!isValid && <h2 id="warning">Input Invalid</h2>}
     </div>

@@ -1,7 +1,7 @@
 import TFormProps from "../types/TFormProps";
 
 
-export default function AddAssignmentForm({ showForm, onChange, onSubmit, value, onDateChange }: TFormProps) {
+export default function AddAssignmentForm({ showForm, onChange, onSubmit, value, onDateChange, changer }: TFormProps) {
 
 
   return (
@@ -23,6 +23,10 @@ export default function AddAssignmentForm({ showForm, onChange, onSubmit, value,
             max='2100-12-31'
           />
           <button id="submitbtn">Enter</button>
+          <button 
+          type="button" 
+          id="cancel"
+          onClick={() => changer!()}>Cancel</button>
         </form>}
     </div>
   )

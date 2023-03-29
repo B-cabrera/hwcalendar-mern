@@ -1,7 +1,7 @@
 import FormProps from "../types/TFormProps";
 
 
-export default function AddClassForm({ showForm, onChange, onSubmit, value }: FormProps): JSX.Element {
+export default function AddClassForm({ showForm, onChange, onSubmit, value, changer }: FormProps): JSX.Element {
 
   return (
     <div id="bottom">
@@ -14,6 +14,11 @@ export default function AddClassForm({ showForm, onChange, onSubmit, value }: Fo
             onChange={onChange}
             autoComplete="off" />
           <button id="submitbtn">Enter</button>
+          <button 
+          type="button" 
+          id="cancel"
+          onClick={() => changer!()}
+          >Cancel</button>
         </form>}
 
     </div>

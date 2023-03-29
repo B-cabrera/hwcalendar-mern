@@ -69,7 +69,8 @@ function App() {
           showForm={isAdding}
           onChange={updateClass}
           onSubmit={createClass}
-          value={nameOfClass} />
+          value={nameOfClass}
+          changer={() => setIsAdding(false)} />
         {error && <p id='warning'>Please enter a valid class</p>}
       </div>
     </div>

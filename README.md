@@ -13,11 +13,10 @@ A personal project to practice developing a web application with the MERN stack 
 ### Reminders
 - [x] Add cancel button when adding class and hw
 - [ ] Fix UI to be view perfectly on different screen sizes.
-- [ ] Getting a fixed number of hws and class at once, essentially dividing all into "pages"
-  - [ ] OR allowing scrolling to see all classes/hws
+- [ ] Limit amount of classes to x amount
 
 ### Progress
-Current Phase:  Allowing for "pages" of classes to be viewed if there are more than x amount  
+Current Phase:  Limiting amount of classes user can add  
 Next Phase: Fixing UI to be viewed perfectly on different screen sizes
 
 #### Contact
