@@ -11,14 +11,14 @@ A personal project to practice developing a web application with the MERN stack 
 - User Auth to allow for individual calendars/reminders
 
 ### Reminders
-- [ ] Add cancel button when adding class and hw
+- [x] Add cancel button when adding class and hw
 - [ ] Fix UI to be view perfectly on different screen sizes.
 - [ ] Getting a fixed number of hws and class at once, essentially dividing all into "pages"
   - [ ] OR allowing scrolling to see all classes/hws
 
 ### Progress
-Current Phase: Adding cancel button  
-Next Phase: Allowing for "pages" of classes to be viewed if there are more than x amount
+Current Phase:  Allowing for "pages" of classes to be viewed if there are more than x amount  
+Next Phase: Fixing UI to be viewed perfectly on different screen sizes
 
 #### Contact
 I am open to all comments about improving the code and overall improvements.  

@@ -11,14 +11,14 @@ interface UpdateFieldProps {
 }
 
 
-export default function UpdateField({ initialValue, onSubmit, onChange, className}: UpdateFieldProps) {
+export default function UpdateField({ initialValue, onSubmit, onChange, className }: UpdateFieldProps) {
   const [isChanging, setIsChanging] = useState(false);
 
 
   function startUpdating() {
     setIsChanging(true)
   }
-  
+
 
   return (
     <>
@@ -29,7 +29,17 @@ export default function UpdateField({ initialValue, onSubmit, onChange, classNam
             onChange={onChange}
           >
           </input>
+          <button
+            id="cancel"
+            onClick={(e) => {
+              e.preventDefault();
+              setIsChanging(false);
+            }}
+          >
+            Cancel
+          </button>
         </form>
+
         : <button
           id="editable-text"
           className={className ? className : ""}
