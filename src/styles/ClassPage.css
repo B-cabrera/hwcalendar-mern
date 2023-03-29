@@ -2,7 +2,7 @@
   display: grid;
   grid-template-rows: auto;
   gap: 5px;
-  width: 65vw;
+  width: 40vw;
 }
 
 #page {

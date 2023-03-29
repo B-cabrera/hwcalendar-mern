@@ -22,7 +22,13 @@ export async function getAllClassNames(req: Request, res: Response) {
 
 export async function createNewClass(req: Request, res: Response) {
 
+  const search = await ClassHW.find({class: req.body.class});
+
   try {
+    if (search) {
+      res.status(400);
+      res.send('Class Exists');
+    }
     const initialized = await ClassHW.syncIndexes();
     const newClass = new ClassHW({
       class: req.body.class,
@@ -35,7 +41,7 @@ export async function createNewClass(req: Request, res: Response) {
     res.json(insertedClass);
   } catch (error) {
     res.status(400);
-    res.send("No no no");
+    res.send("Invalid Class");
   }
 }
 

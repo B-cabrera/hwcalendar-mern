@@ -11,13 +11,12 @@ A personal project to practice developing a web application with the MERN stack 
 - User Auth to allow for individual calendars/reminders
 
 ### Reminders
-- [x] Add cancel button when adding class and hw
 - [ ] Fix UI to be view perfectly on different screen sizes.
-- [ ] Limit amount of classes to x amount
+- [ ] Google Calendar API
 
 ### Progress
-Current Phase:  Limiting amount of classes user can add  
-Next Phase: Fixing UI to be viewed perfectly on different screen sizes
+Current Phase:  Fixing UI to be viewed perfectly on different screen sizes    
+Next Phase: User Auth
 
 #### Contact
 I am open to all comments about improving the code and overall improvements.  

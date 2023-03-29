@@ -20,7 +20,7 @@ export default function AddAssignmentForm({ showForm, onChange, onSubmit, value,
             type="date"
             onChange={onDateChange}
             min={new Date(Date.now()).toISOString().split('T')[0]}
-            max='2100-12-31'
+            max='3100-12-31'
           />
           <button id="submitbtn">Enter</button>
           <button 
