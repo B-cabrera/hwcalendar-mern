@@ -1,5 +1,5 @@
-import { ChangeEvent, FormEvent, useEffect, useState } from "react"
-import { useLocation, useParams } from "react-router-dom"
+import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react"
+import { generatePath, redirect, useLocation, useNavigate, useParams } from "react-router-dom"
 import THW from "../types/THW";
 import "../styles/ClassPage.css"
 import NavBar from "./NavBar";
@@ -7,6 +7,8 @@ import AddAssignmentForm from "./AddAssignmentForm";
 import { handleCreateAssignment, handleGetAssignmentByClassID } from "../handlers/assignmentHandler";
 import UpdatableRow from "./UpdatableRow";
 import { validateString } from "../App";
+import UpdateField from "./UpdateField";
+import { handleUpdateClassName } from "../handlers/classHandler";
 
 export default function ClassPage() {
   const [assignments, setAssignments] = useState<THW[] | null>();
@@ -16,6 +18,8 @@ export default function ClassPage() {
   const [hwDate, setHwDate] = useState<Date>();
   const [isValid, setIsValid] = useState(true);
   const { id, className } = useParams();
+  const [currentClass, setCurrentClassName] = useState(className!);
+  const navigate = useNavigate();
 
   useEffect(() => {
     async function getAssignments() {
@@ -55,6 +59,26 @@ export default function ClassPage() {
     createdHW ? reset() : setIsValid(false);
 
   }
+  function updateClassName(event: ChangeEvent<HTMLInputElement>) {
+    setCurrentClassName(event.target.value);
+  }
+
+  async function changeClassName(event: FormEvent<HTMLFormElement>) {
+
+    if (!validateString(currentClass)) {
+      event.preventDefault()
+      setIsValid(false)
+      return
+    }
+
+    const status = handleUpdateClassName(id!, currentClass);
+    const newPath = generatePath('/:name/:id', {name: currentClass, id: id!});
+
+    !status ? setIsValid(false) : setIsValid(true);
+    navigate(newPath);
+  
+
+  }
 
   function changeAddAssigment() {
     if (!isAddingAssignment) setIsAddingAssignment(true);
@@ -64,7 +88,12 @@ export default function ClassPage() {
   return (
     <div id='page'>
       <NavBar />
-      <h1 id="nameOfClass">{className}</h1>
+      <UpdateField
+        className="titlefield"
+        initialValue={currentClass}
+        onSubmit={changeClassName}
+        onChange={updateClassName}
+      />
       {!isAddingAssignment &&
         <button
           onClick={changeAddAssigment}>

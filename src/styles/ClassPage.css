@@ -11,8 +11,13 @@
   gap: 80px;
 }
 
-#nameOfClass {
+.titlefield {
   color: white;
   font-family: Raleway;
   letter-spacing: 5px;
+  font-size: 30px !important;
+}
+
+.titleinput {
+  width: 100px !important;
 }

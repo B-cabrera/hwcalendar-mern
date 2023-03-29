@@ -17,8 +17,8 @@ A personal project to practice developing a web application with the MERN stack 
   - [ ] OR allowing scrolling to see all classes/hws
 
 ### Progress
-Current Phase: Implementing the ability to update class name  
-Next Phase: Fixing problems
+Current Phase: Adding cancel button  
+Next Phase: Allowing for "pages" of classes to be viewed if there are more than x amount
 
 #### Contact
 I am open to all comments about improving the code and overall improvements.  
