@@ -22,13 +22,7 @@ export async function getAllClassNames(req: Request, res: Response) {
 
 export async function createNewClass(req: Request, res: Response) {
 
-  const search = await ClassHW.find({class: req.body.class});
-
   try {
-    if (search) {
-      res.status(400);
-      res.send('Class Exists');
-    }
     const initialized = await ClassHW.syncIndexes();
     const newClass = new ClassHW({
       class: req.body.class,
@@ -65,8 +59,17 @@ export async function deleteClass(req: Request, res: Response) {
 export async function updateClassName(req: Request, res: Response) {
   const id = req.params.id;
   const newName = req.body.newName;
+  const search = await ClassHW.aggregate([{
+    $match: {class: newName}
+  }]);
 
   try {
+    if (search.length > 0) {
+      res.status(400)
+      res.send('Class Exists')
+      return
+    }
+    
     const theClass = await ClassHW.findByIdAndUpdate(id, {
       class: newName
     })

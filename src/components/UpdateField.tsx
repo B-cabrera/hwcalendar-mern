@@ -24,7 +24,7 @@ export default function UpdateField({ initialValue, onSubmit, onChange, classNam
     <>
       {isChanging ?
         <>
-          <form onSubmit={onSubmit}>
+          <form className="inputs" onSubmit={onSubmit}>
             <input
               value={initialValue}
               onChange={onChange}

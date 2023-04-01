@@ -19,6 +19,11 @@
   font-size: 30px !important;
 }
 
-.titleinput {
-  width: 100px !important;
+@media screen and (max-width: 450px) {
+  .inputs {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 10px;
+  }
 }

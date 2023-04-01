@@ -64,19 +64,23 @@ export default function ClassPage() {
   }
 
   async function changeClassName(event: FormEvent<HTMLFormElement>) {
-
+    event.preventDefault()
     if (!validateString(currentClass)) {
-      event.preventDefault()
       setIsValid(false)
       return
     }
 
-    const status = handleUpdateClassName(id!, currentClass);
-    const newPath = generatePath('/:name/:id', {name: currentClass, id: id!});
-
-    !status ? setIsValid(false) : setIsValid(true);
-    navigate(newPath);
-  
+    handleUpdateClassName(id!, currentClass).then((data) => {
+      if (data) {
+        const newPath = generatePath('/:name/:id', {name: currentClass, id: id!});
+        setIsValid(true)
+        navigate(newPath)
+        window.location.reload()
+      } else {
+        setIsValid(false)
+      }
+    })
+    
 
   }
 
@@ -88,6 +92,7 @@ export default function ClassPage() {
   return (
     <div id='page'>
       <NavBar />
+      {!isValid && <h2 id="warning">Input Invalid</h2>}
       <UpdateField
         className="titlefield"
         initialValue={currentClass}
@@ -119,7 +124,6 @@ export default function ClassPage() {
         value={hwName}
         changer = {() => setIsAddingAssignment(false)}
       />
-      {!isValid && <h2 id="warning">Input Invalid</h2>}
     </div>
   )
 }

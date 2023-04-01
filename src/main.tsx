@@ -4,6 +4,7 @@ import App from './App'
 import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ClassPage from './components/ClassPage'
+import LandingPage from './components/LandingPage'
 
 const router = createBrowserRouter([{
   path: "/",
@@ -11,7 +12,11 @@ const router = createBrowserRouter([{
 }, {
   path: "/:className/:id",
   element: <ClassPage />
-}])
+}, {
+  path: "/landing",
+  element: <LandingPage />
+}
+])
 
 ReactDOM.createRoot(document.getElementById('root') as HTMLElement).render(
   <React.StrictMode>
