@@ -1,17 +1,15 @@
 ![HwCalendar Logo](https://github.com/B-cabrera/hwcalendar-mern/blob/main/src/assets/HwCalendarLogo.png?raw=true)
 
 # HwCalendar
-A web application where you can add HW with due dates based on class and be reminded using (NOT YET CHOSEN).
+A web application where you can add HW with due dates based on class and be reminded using Google Calendar.
 
 ## Description
 A personal project to practice developing a web application with the MERN stack (MongoDB, Express.js, React.js, and Node.js).
 
 ### Ideas
-- Integration with Google Calendar using API.
-- User Auth to allow for individual calendars/reminders
+- React Toaster for Notifications like invalid input
 
 ### Reminders
-- [x] Fix UI to be view perfectly on different screen sizes.
 - [ ] Google Calendar API
 
 ### Progress

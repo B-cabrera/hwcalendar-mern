@@ -3,8 +3,9 @@ import './styles/App.css'
 import AddClassForm from './components/AddClassForm';
 import NavBar from './components/NavBar';
 import BookShelf from './components/BookShelf';
-import { handleCreateClass, handleGetAllClasses } from './handlers/classHandler';
+import { handleCreateClass, handleGetAllClasses, handleSetAuthCode } from './handlers/classHandler';
 import TClassHW from './types/TClassHW';
+import { useSearchParams } from 'react-router-dom';
 
 export function validateString(data: string) {
   if (data.length <= 0 ||
@@ -25,6 +26,7 @@ function App() {
   const [nameOfClass, setNameOfClass] = useState('');
   const [error, setError] = useState<[string, boolean]>(['',false]);
   const [latestClass, setLatestClass] = useState<TClassHW>();
+
 
   function changeAdd() {
     if (!isAdding) setIsAdding(true);

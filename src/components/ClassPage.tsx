@@ -1,5 +1,5 @@
-import { ChangeEvent, FormEvent, useEffect, useRef, useState } from "react"
-import { generatePath, redirect, useLocation, useNavigate, useParams } from "react-router-dom"
+import { ChangeEvent, FormEvent, useEffect, useState } from "react"
+import { generatePath, useNavigate, useParams } from "react-router-dom"
 import THW from "../types/THW";
 import "../styles/ClassPage.css"
 import NavBar from "./NavBar";

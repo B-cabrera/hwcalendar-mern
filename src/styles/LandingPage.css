@@ -34,7 +34,10 @@
   font-family: Raleway;
   padding-left: 10px;
   font-size: 18px;
+  text-underline-offset: 4px;
+  padding-bottom: 50px;
 }
+
 
 .exampleimg {
   max-width: 85vw;
