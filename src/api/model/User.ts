@@ -5,11 +5,19 @@ import mongoose from "mongoose";
 const UserSchema = new mongoose.Schema({
   authCode: {
     type: String,
+  },
+  email: {
+    type: String,
+    required: true,
     unique: true
-  }
+  },
+  classes: [{
+    type: mongoose.Schema.Types.ObjectId,
+    ref: 'ClassHW'
+  }]
 })
 
 
-const Users = mongoose.model('User', UserSchema);
+const User = mongoose.model('User', UserSchema);
 
-export default Users;
+export default User;
