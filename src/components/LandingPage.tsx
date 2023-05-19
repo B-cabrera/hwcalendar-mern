@@ -8,15 +8,22 @@ export default function LandingPage() {
   const navigate = useNavigate();
 
   useEffect(() => {
-    setGoogleClient(google.accounts.oauth2.initCodeClient({
-      client_id: '839726544026-n3bfad17fmu8gpfb8aa0h7vnisg833ft.apps.googleusercontent.com',
-      scope: 'https://www.googleapis.com/auth/calendar',
-      ux_mode: 'popup',
-      callback: (response) => {
-        handleInitAuth(response);
-        navigate('/')
-      }
-    }))
+    fetch("http://localhost:4008/api/auth/googleClient").then((res) => {
+      return res.json()
+    }).then((json) => {
+      setGoogleClient(google.accounts.oauth2.initCodeClient({
+        client_id: json.GOOGLE_CLIENT_ID,
+        scope: 'https://www.googleapis.com/auth/calendar',
+        ux_mode: 'popup',
+        callback: (response) => {
+          handleInitAuth(response);
+          navigate('/')
+        }
+      }))
+
+    })
+
+
   }, [])
 
 

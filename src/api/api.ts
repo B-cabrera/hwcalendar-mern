@@ -6,12 +6,13 @@ import {
   getAllClassNames,
   updateClassName,
 } from './controllers/classController';
-import { initAuth } from './controllers/serverController';
+import { getGoogleClientID, initAuth } from './controllers/serverController';
 
 const router = Router();
 
 router.get('/', getAllClassNames)
 router.get('/:id', getAssignmentsByClassID)
+router.get('/auth/googleClient', getGoogleClientID);
 router.post('/class', createNewClass)
 router.post('/assignment', createNewAssignment)
 router.post('/auth', initAuth);

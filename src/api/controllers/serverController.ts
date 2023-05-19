@@ -1,5 +1,6 @@
 import { Request, Response } from "express";
 import Users from "../model/User";
+import { GOOGLE_CLIENT_ID } from "../config";
 
 export async function initAuth(req: Request, res: Response) {
   const googleAuthCode = req.body.code
@@ -20,4 +21,9 @@ export async function initAuth(req: Request, res: Response) {
   }
 
 
+}
+
+
+export async function getGoogleClientID(req: Request, res: Response) {
+  res.json({GOOGLE_CLIENT_ID});
 }
