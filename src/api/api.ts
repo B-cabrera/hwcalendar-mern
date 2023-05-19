@@ -6,6 +6,7 @@ import {
   getAllClassNames,
   updateClassName,
 } from './controllers/classController';
+import { initAuth } from './controllers/serverController';
 
 const router = Router();
 
@@ -13,6 +14,7 @@ router.get('/', getAllClassNames)
 router.get('/:id', getAssignmentsByClassID)
 router.post('/class', createNewClass)
 router.post('/assignment', createNewAssignment)
+router.post('/auth', initAuth);
 router.patch('/assignment', toggleAssignment);
 router.patch('/assignment/:id', updateAssignment);
 router.patch('/class/:id', updateClassName)

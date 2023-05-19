@@ -1,6 +1,28 @@
+import { useEffect, useState } from 'react'
 import '../styles/LandingPage.css'
+import { useNavigate } from 'react-router-dom';
+import { handleInitAuth } from '../handlers/clientHandler';
 
 export default function LandingPage() {
+  const [googleClient, setGoogleClient] = useState<google.accounts.oauth2.CodeClient>();
+  const navigate = useNavigate();
+
+  useEffect(() => {
+    setGoogleClient(google.accounts.oauth2.initCodeClient({
+      client_id: '839726544026-n3bfad17fmu8gpfb8aa0h7vnisg833ft.apps.googleusercontent.com',
+      scope: 'https://www.googleapis.com/auth/calendar',
+      ux_mode: 'popup',
+      callback: (response) => {
+        handleInitAuth(response);
+        navigate('/')
+      }
+    }))
+  }, [])
+
+
+  function getAccessToken() {
+    googleClient!.requestCode();
+  }
   return (
     <>
       <span id='heading'>
@@ -10,6 +32,7 @@ export default function LandingPage() {
         />
         <h1>HwCalendar</h1>
       </span>
+      <button onClick={getAccessToken}>Login</button>
       <span id='mainmessage'>
         <p>HwCalendar: A platform where you can track homework due dates and classes!</p>
       </span>

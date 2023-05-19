@@ -69,33 +69,3 @@ export async function handleUpdateClassName(classID: string, newName: string) {
 
   return didUpdate;
 }
-
-
-export async function handleGetAuthURL(): Promise<string> {
-  const response = await fetch('http://localhost:4008/api/auth');
-
-  const url = await response.json()
-
-  return url
-}
-
-export async function handleSetAuthCode(theCode: string) {
-  const response = await fetch('http://localhost:4008/api/auth/code', {
-    method: 'POST',
-    headers: {
-      'Content-Type': 'application/json'
-    },
-    body: JSON.stringify({theCode})
-  })
-
-  return response.ok
-}
-
-
-export async function handleIsLoggedIn() {
-  const response = await fetch('http://localhost:4008/api/auth/status')
-
-  const authStatus = await response.json();
-
-  return authStatus as boolean;
-}
