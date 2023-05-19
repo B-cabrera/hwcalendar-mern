@@ -1,23 +1,41 @@
 import { Request, Response } from "express";
 import Users from "../model/User";
-import { GOOGLE_CLIENT_ID } from "../config";
+import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET } from "../config";
+import { OAuth2Client } from "google-auth-library";
+
+interface UserInfoResponse {
+  email: string
+}
 
 export async function initAuth(req: Request, res: Response) {
   const googleAuthCode = req.body.code
 
   try {
-    const newUser = new Users({
-      authCode: googleAuthCode
+
+    const client = new OAuth2Client(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET);
+
+    const tokenResponse = await client.getToken({
+      code: googleAuthCode,
+      redirect_uri: "http://localhost:5173",
+    });
+
+    const accessToken = tokenResponse.tokens.access_token;
+
+    client.setCredentials({
+      access_token: accessToken
     })
-    
-    // TEMP FLOW: CREATES A USER IN DATABASE
-    const createdUser = await newUser.save()
-    
-    res.status(201)
-    res.json(createdUser._id);
+
+    const userInfoResponse = await client.request<UserInfoResponse>({
+      url: 'https://www.googleapis.com/oauth2/v2/userinfo'
+    })
+
+    const email = userInfoResponse.data.email;
+
+    // TODO: CHECK IF USER EXISTS, IF THEY DONT CREATE USER AND THEN CREATE A JWT
+
   } catch (error) {
     res.status(400);
-    res.send("Error saving user")
+    res.send(error)
   }
 
 

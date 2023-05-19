@@ -17,7 +17,7 @@ export default function LandingPage() {
         ux_mode: 'popup',
         callback: (response) => {
           handleInitAuth(response);
-          navigate('/')
+          // navigate('/')
         }
       }))
 
