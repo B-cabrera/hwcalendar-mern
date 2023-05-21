@@ -13,7 +13,7 @@ export default function LandingPage() {
     }).then((json) => {
       setGoogleClient(google.accounts.oauth2.initCodeClient({
         client_id: json.GOOGLE_CLIENT_ID,
-        scope: 'https://www.googleapis.com/auth/calendar',
+        scope: 'https://www.googleapis.com/auth/calendar email',
         ux_mode: 'popup',
         callback: (response) => {
           handleInitAuth(response);
