@@ -31,10 +31,13 @@ export async function handleCreateClass(event: FormEvent<HTMLFormElement>, nameO
 
 
 export async function handleGetAllClasses(): Promise<TClassHW[] | null> {
-  const response = await fetch('http://localhost:4008/api');
+  const response = await fetch('http://localhost:4008/api', {
+    headers: {
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    }
+  });
 
   const allClasses = response.status == 500 ? null : await response.json() as TClassHW[];
-
 
   return allClasses;
 }

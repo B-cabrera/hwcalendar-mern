@@ -1,4 +1,4 @@
-import { ChangeEvent, FormEvent, useState } from 'react'
+import { ChangeEvent, FormEvent, useEffect, useState } from 'react'
 import './styles/App.css'
 import AddClassForm from './components/AddClassForm';
 import NavBar from './components/NavBar';

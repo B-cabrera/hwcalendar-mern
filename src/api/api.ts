@@ -7,10 +7,11 @@ import {
   updateClassName,
 } from './controllers/classController';
 import { getGoogleClientID, initAuth } from './controllers/serverController';
+import { verifyToken } from './middleware';
 
 const router = Router();
 
-router.get('/', getAllClassNames)
+router.get('/', verifyToken, getAllClassNames)
 router.get('/:id', getAssignmentsByClassID)
 router.get('/auth/googleClient', getGoogleClientID);
 router.post('/class', createNewClass)

@@ -16,8 +16,10 @@ export default function LandingPage() {
         scope: 'https://www.googleapis.com/auth/calendar email',
         ux_mode: 'popup',
         callback: (response) => {
-          handleInitAuth(response);
-          navigate('/')
+          handleInitAuth(response).then((data) => {
+            sessionStorage.setItem('token', data.token);
+            navigate('/')
+          })
         }
       }))
 

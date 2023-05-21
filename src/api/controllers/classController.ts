@@ -2,21 +2,37 @@ import { Request, Response } from "express";
 import TClassHW from "../../types/TClassHW";
 import THW from "../../types/THW";
 import ClassHW from "../model/Classes";
+import User from "../model/User";
 
-export async function getAllClassNames(req: Request, res: Response) {
+interface tokenData {
+  id: string,
+}
 
+export async function getAllClassNames(req: Request, res: Response, data: any) {
+  const userInfo = req.body as tokenData
+  const userID = userInfo.id
   try {
-    const allClasses = await ClassHW.aggregate([
-      { $project: { "class": 1, "class_length": { $strLenCP: "$class" } } },
-      { $sort: { "class_length": 1 } }
-    ]) as TClassHW[];
+    const classesObj = await User.findById(userID).
+    select('classes -_id')
+    .populate({
+      path: 'classes',
+      options: { sort: { title: 1 } },
+      populate: {
+        path: 'assignments',
+      },
+    });
+
+
+    const allClasses = classesObj!.classes
+
+    console.log(allClasses);
 
 
     res.status(200);
     res.json(allClasses);
   } catch (error) {
     res.status(500);
-    res.send("No no no");
+    res.send(error);
   }
 }
 

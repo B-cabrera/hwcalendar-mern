@@ -8,4 +8,7 @@ export async function handleInitAuth(authResponse: google.accounts.oauth2.CodeRe
       code: authResponse.code
     })
   })
+
+
+  return apiResponse.json();
 }

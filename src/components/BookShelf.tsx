@@ -22,7 +22,10 @@ export default function BookShelf({ latestClass }: TBookShelfProps) {
 
   useEffect(() => {
     async function getClasses() {
-      setClasses(await handleGetAllClasses());
+      const allClasses = await handleGetAllClasses();
+      console.log(allClasses);
+
+      setClasses(allClasses);
     }
 
     getClasses();
