@@ -1,7 +1,6 @@
 import { Request, Response } from "express";
-import Users from "../model/User";
 import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, JWT_SECRET } from "../config";
-import { OAuth2Client, auth } from "google-auth-library";
+import { OAuth2Client } from "google-auth-library";
 import User from "../model/User";
 import { TUser } from "../../types/TUser";
 import jwt from 'jsonwebtoken';

@@ -1,11 +1,10 @@
-import { ChangeEvent, FormEvent, useCallback, useEffect, useState } from 'react'
+import { ChangeEvent, FormEvent, useState } from 'react'
 import './styles/App.css'
 import AddClassForm from './components/AddClassForm';
 import NavBar from './components/NavBar';
 import BookShelf from './components/BookShelf';
-import { handleCreateClass, handleGetAllClasses, handleSetAuthCode } from './handlers/classHandler';
+import { handleCreateClass } from './handlers/classHandler';
 import TClassHW from './types/TClassHW';
-import { useSearchParams } from 'react-router-dom';
 
 export function validateString(data: string) {
   if (data.length <= 0 ||
