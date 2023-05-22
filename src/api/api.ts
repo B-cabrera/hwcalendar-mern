@@ -20,7 +20,7 @@ router.post('/class', verifyToken, createNewClass); // DONE
 router.post('/assignment', verifyToken, createNewAssignment); // DONE
 router.post('/auth', initAuth); // DONE
 router.patch('/assignment', verifyToken, toggleAssignment); // DONE 
-router.patch('/assignment/:id', verifyToken, updateAssignment);
+router.patch('/assignment/:id', verifyToken, updateAssignment); // DONE
 router.patch('/class/:id', verifyToken, updateClassName);
 router.delete('/class/:id', verifyToken, deleteClass);
 router.delete('/assignment/:hwID/:classID', verifyToken, deleteAssignment);
