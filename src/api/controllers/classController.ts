@@ -25,8 +25,6 @@ export async function getAllClassNames(req: Request, res: Response, data: any) {
 
     const allClasses = classesObj!.classes
 
-    console.log(allClasses);
-
 
     res.status(200);
     res.json(allClasses);

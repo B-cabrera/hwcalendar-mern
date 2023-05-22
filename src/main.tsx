@@ -5,7 +5,6 @@ import './index.css'
 import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ClassPage from './components/ClassPage'
 import LandingPage from './components/LandingPage'
-import PrivateRoute from './components/PrivateRoute'
 
 const router = createBrowserRouter([{
   path: "/",

@@ -38,7 +38,7 @@ export async function handleGetAllClasses() {
   });
 
   // NEED TO HANDLE 401 STATUS
-  return response.json();
+  return response.status == 401 ? new Error() : response.json();
 }
 
 
