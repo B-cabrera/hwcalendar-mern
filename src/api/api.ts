@@ -14,7 +14,7 @@ const router = Router();
 // ROUTES WITH COMMAS MEAN I HAVE LOOKED OVER IT AND FIXED IT AFTER THE ADDITION OF USER AUTH
 
 router.get('/', verifyToken, getAllClassNames);// DONE
-router.get('/:id', verifyToken, getAssignmentsByClassID);
+router.get('/:id', verifyToken, getAssignmentsByClassID); // DONE
 router.get('/auth/googleClient', getGoogleClientID); // DONE
 router.post('/class', verifyToken, createNewClass); // DONE
 router.post('/assignment', verifyToken, createNewAssignment);

@@ -25,6 +25,7 @@ export default function ClassPage() {
     async function getAssignments() {
       const hws = await handleGetAssignmentByClassID(id);
 
+      hws instanceof Error && navigate('/login');
       setAssignments(hws);
     }
 

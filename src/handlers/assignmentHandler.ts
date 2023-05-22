@@ -1,11 +1,18 @@
 import THW from "../types/THW";
 
 export async function handleGetAssignmentByClassID(id: string | undefined) {
-  const response = await fetch(`http://localhost:4008/api/${id}`);
-  const classAssignments = response.status == 404 ? null : await response.json() as [THW];
+  const response = await fetch(`http://localhost:4008/api/${id}`, {
+    headers: {
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    }
+  });
 
-
-  return classAssignments;
+  if (response.status == 404)
+    return null
+  else if (response.status == 401)
+    return new Error()
+  else
+    return response.json();
 }
 
 
