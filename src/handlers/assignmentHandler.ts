@@ -30,7 +30,7 @@ export async function handleToggleAssignment(classID: string | undefined, hwID: 
     })
   });
 
-  if (response.status == 500) 
+  if (response.status == 500)
     return null
   else if (response.status == 401)
     return new Error()
@@ -88,11 +88,12 @@ export async function handleDeleteAssignment(hwID: number | undefined, classID: 
 
 
 export async function handleUpdateAssignment(name: string, date: string, assignmentID: number, classID: string) {
-  
+
   const response = await fetch(`http://localhost:4008/api/assignment/${assignmentID}`, {
     method: 'PATCH',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     },
     body: JSON.stringify({
       classID,
@@ -101,8 +102,10 @@ export async function handleUpdateAssignment(name: string, date: string, assignm
     })
   })
 
-
-  const didUpdate = response.status == 200;
-
-  return didUpdate;
+  if (response.status == 500)
+    return false
+  else if (response.status == 401)
+    return new Error()
+  else
+    return true
 }

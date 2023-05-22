@@ -18,7 +18,7 @@ export default function UpdatableRow({ hw, classID: id, update }: UpdatableRowPr
   const [title, setTitle] = useState(hw.name.toUpperCase());
   const [error, setError] = useState(false);
   const navigate = useNavigate();
-  
+
   async function toggleCheckBox(oldValue: boolean, assignmentID: number) {
     const value = !oldValue;
 
@@ -68,11 +68,11 @@ export default function UpdatableRow({ hw, classID: id, update }: UpdatableRowPr
 
     const updated = await handleUpdateAssignment(title, date, hw._id!, id);
 
+    updated instanceof Error && navigate('/login')
 
     if (updated) {
       update();
-    }
-    else setError(true)
+    } else setError(true)
   }
 
   function updateTitle(event: ChangeEvent<HTMLInputElement>): void {
