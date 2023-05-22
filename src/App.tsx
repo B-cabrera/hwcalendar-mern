@@ -49,7 +49,7 @@ function App() {
       return
     }
 
-    const { created: createdClass } = await handleCreateClass(event, nameOfClass);
+    const createdClass = await handleCreateClass(event, nameOfClass);
 
     createdClass ? (setLatestClass(createdClass), reset()) : setError(['Invalid',true]);
   }

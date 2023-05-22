@@ -12,16 +12,16 @@ import { verifyToken } from './middleware';
 const router = Router();
 
 router.get('/', verifyToken, getAllClassNames)
-router.get('/:id', getAssignmentsByClassID)
+router.get('/:id', verifyToken, getAssignmentsByClassID)
 router.get('/auth/googleClient', getGoogleClientID);
-router.post('/class', createNewClass)
-router.post('/assignment', createNewAssignment)
+router.post('/class', verifyToken, createNewClass)
+router.post('/assignment', verifyToken, createNewAssignment)
 router.post('/auth', initAuth);
-router.patch('/assignment', toggleAssignment);
-router.patch('/assignment/:id', updateAssignment);
-router.patch('/class/:id', updateClassName)
-router.delete('/class/:id', deleteClass);
-router.delete('/assignment/:hwID/:classID', deleteAssignment)
+router.patch('/assignment', verifyToken, toggleAssignment);
+router.patch('/assignment/:id', verifyToken, updateAssignment);
+router.patch('/class/:id', verifyToken, updateClassName)
+router.delete('/class/:id', verifyToken, deleteClass);
+router.delete('/assignment/:hwID/:classID', verifyToken, deleteAssignment)
 
 
 

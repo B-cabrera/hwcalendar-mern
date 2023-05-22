@@ -1,29 +1,36 @@
 import { Request, Response } from "express";
-import TClassHW from "../../types/TClassHW";
-import THW from "../../types/THW";
 import ClassHW from "../model/Classes";
 import User from "../model/User";
+import mongoose from "mongoose";
 
 interface tokenData {
   id: string,
 }
 
-export async function getAllClassNames(req: Request, res: Response, data: any) {
-  const userInfo = req.body as tokenData
-  const userID = userInfo.id
+export async function getAllClassNames(req: Request, res: Response) {
   try {
-    const classesObj = await User.findById(userID).
-    select('classes -_id')
-    .populate({
-      path: 'classes',
-      options: { sort: { title: 1 } },
-      populate: {
-        path: 'assignments',
+    const userInfo = req.body as tokenData
+    const userID = userInfo.id
+    const classesObj = await User.aggregate([
+      { $match: { _id: new mongoose.Types.ObjectId(userID) } },
+      { $lookup: { from: 'classhws', localField: 'classes', foreignField: '_id', as: 'classes' } },
+      { $unwind: '$classes' },
+      {
+        $addFields: {
+          class_length: { $strLenCP: '$classes.class' },
+        },
       },
-    });
+      { $sort: { class_length: 1 } },
+      {
+        $group: {
+          _id: '$_id',
+          classes: { $push: '$classes' },
+        },
+      },
+    ]);
 
 
-    const allClasses = classesObj!.classes
+    const allClasses = classesObj![0].classes
 
 
     res.status(200);
@@ -35,9 +42,13 @@ export async function getAllClassNames(req: Request, res: Response, data: any) {
 }
 
 export async function createNewClass(req: Request, res: Response) {
-
   try {
+    const userInfo = req.body as tokenData
+    const userID = userInfo.id
+
     const initialized = await ClassHW.syncIndexes();
+
+
     const newClass = new ClassHW({
       class: req.body.class,
       assignments: req.body.assignments,
@@ -45,11 +56,16 @@ export async function createNewClass(req: Request, res: Response) {
 
     const insertedClass = await newClass.save();
 
+    await User.updateOne(
+      { _id: userID },
+      { $push: { classes: newClass._id } }
+    )
+
     res.status(201)
     res.json(insertedClass);
   } catch (error) {
     res.status(400);
-    res.send("Invalid Class");
+    res.send(error);
   }
 }
 
@@ -59,7 +75,7 @@ export async function deleteClass(req: Request, res: Response) {
   const id = req.params.id;
 
   try {
-    const deleted = await ClassHW.deleteOne({_id: id});
+    const deleted = await ClassHW.deleteOne({ _id: id });
 
     res.status(204);
     res.send("Deletion Success");
@@ -74,7 +90,7 @@ export async function updateClassName(req: Request, res: Response) {
   const id = req.params.id;
   const newName = req.body.newName;
   const search = await ClassHW.aggregate([{
-    $match: {class: newName}
+    $match: { class: newName }
   }]);
 
   try {
@@ -83,14 +99,14 @@ export async function updateClassName(req: Request, res: Response) {
       res.send('Class Exists')
       return
     }
-    
+
     const theClass = await ClassHW.findByIdAndUpdate(id, {
       class: newName
     })
 
     res.status(200)
     res.send("Updated Succesfully")
-  } catch(err) {
+  } catch (err) {
     res.status(400)
     res.send("Couldn't update");
   }

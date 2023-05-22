@@ -8,10 +8,13 @@ export function verifyToken(req: Request, res: Response, next: NextFunction) {
   try {
     const token = req.get('authorization')?.split(' ')[1];
 
-    const data = jwt.verify(token!, JWT_SECRET);
+    const data = jwt.verify(token!, JWT_SECRET) as {};
 
 
-    req.body = data;
+    req.body = {
+      ...req.body,
+      ...data,
+    }
     next();
   } catch (err) {
     res.status(401);

@@ -2,12 +2,11 @@ import { FormEvent } from "react";
 import TClassHW from "../types/TClassHW";
 import THW from "../types/THW";
 
-export async function handleCreateClass(event: FormEvent<HTMLFormElement>, nameOfClass: string):
-  Promise<{ created: TClassHW | null }> {
+export async function handleCreateClass(event: FormEvent<HTMLFormElement>, nameOfClass: string) {
   event.preventDefault();
 
   // validating before fetching
-  if (!nameOfClass || nameOfClass.trim().length == 0) return { created: null };
+  if (!nameOfClass || nameOfClass.trim().length == 0) return null;
 
   const newClass: TClassHW = {
     class: nameOfClass,
@@ -17,14 +16,15 @@ export async function handleCreateClass(event: FormEvent<HTMLFormElement>, nameO
   const response = await fetch('http://localhost:4008/api/class', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     },
     body: JSON.stringify(newClass),
   })
 
   const createdClass = response.status == 400 ? null : await response.json() as TClassHW;
 
-  return { created: createdClass }
+  return createdClass
 
 
 }
