@@ -17,6 +17,9 @@ export default function BookShelf({ latestClass }: TBookShelfProps) {
 
     const deleted = await handleDeleteClass(id!);
 
+    deleted instanceof Error && navigate('/login');
+
+    
     setChanged(!changed);
 
   }

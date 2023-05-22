@@ -73,9 +73,12 @@ export async function createNewClass(req: Request, res: Response) {
 
 export async function deleteClass(req: Request, res: Response) {
   const id = req.params.id;
+  const userInfo = req.body as tokenData
+  const userID = userInfo.id
 
   try {
-    const deleted = await ClassHW.deleteOne({ _id: id });
+    await ClassHW.findByIdAndDelete(id);
+    await User.findByIdAndUpdate(userID, { $pull: { classes: id } });
 
     res.status(204);
     res.send("Deletion Success");

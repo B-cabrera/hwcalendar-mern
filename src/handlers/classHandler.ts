@@ -47,13 +47,18 @@ export async function handleGetAllClasses() {
 
 export async function handleDeleteClass(classID: number) {
   const response = await fetch(`http://localhost:4008/api/class/${classID}`, {
-    method: "DELETE"
+    method: "DELETE",
+    headers: {
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    }
   })
 
-  const didDelete = response.status != 500 
-
-
-  return didDelete;
+  if (response.status == 500)
+    return false
+  else if (response.status == 401)
+    return new Error()
+  else
+    return true
 }
 
 
