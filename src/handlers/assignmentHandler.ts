@@ -20,7 +20,8 @@ export async function handleToggleAssignment(classID: string | undefined, hwID: 
   const response = await fetch("http://localhost:4008/api/assignment", {
     method: 'PATCH',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     },
     body: JSON.stringify({
       classID: classID,
@@ -28,10 +29,15 @@ export async function handleToggleAssignment(classID: string | undefined, hwID: 
       finished: updatedToggle,
     })
   });
-  const newToggleValue = response.status == 500 ? null : await response.json() as boolean;
 
-
-  return newToggleValue;
+  if (response.status == 500) 
+    return null
+  else if (response.status == 401)
+    return new Error()
+  else {
+    const newVal = await response.json() as boolean
+    return newVal
+  }
 
 }
 

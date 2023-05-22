@@ -5,6 +5,7 @@ import UpdateField from "./UpdateField";
 import { ChangeEvent, FormEvent, useState } from "react";
 import '../styles/UpdatableRow.css';
 import { validateString } from "../App";
+import { useNavigate } from "react-router-dom";
 
 interface UpdatableRowProps {
   hw: THW,
@@ -16,13 +17,16 @@ export default function UpdatableRow({ hw, classID: id, update }: UpdatableRowPr
   const [date, setDate] = useState(formatDate(hw.dueDate));
   const [title, setTitle] = useState(hw.name.toUpperCase());
   const [error, setError] = useState(false);
-
-  function toggleCheckBox(oldValue: boolean, assignmentID: number) {
+  const navigate = useNavigate();
+  
+  async function toggleCheckBox(oldValue: boolean, assignmentID: number) {
     const value = !oldValue;
 
-    handleToggleAssignment(id, assignmentID, value).then(() => {
-      update();
-    })
+    const result = await handleToggleAssignment(id, assignmentID, value)
+
+    result instanceof Error && navigate('/login');
+
+    update();
 
   }
 
