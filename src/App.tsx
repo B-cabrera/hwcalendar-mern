@@ -23,7 +23,7 @@ export function validateString(data: string) {
 function App() {
   const [isAdding, setIsAdding] = useState(false);
   const [nameOfClass, setNameOfClass] = useState('');
-  const [error, setError] = useState<[string, boolean]>(['',false]);
+  const [error, setError] = useState<[string, boolean]>(['', false]);
   const [latestClass, setLatestClass] = useState<TClassHW>();
 
 
@@ -51,7 +51,7 @@ function App() {
 
     const createdClass = await handleCreateClass(event, nameOfClass);
 
-    createdClass ? (setLatestClass(createdClass), reset()) : setError(['Invalid',true]);
+    createdClass ? (setLatestClass(createdClass), reset()) : setError(['Invalid', true]);
   }
 
   return (
@@ -71,7 +71,10 @@ function App() {
           onChange={updateClass}
           onSubmit={createClass}
           value={nameOfClass}
-          changer={() => setIsAdding(false)} />
+          changer={() => {
+            setIsAdding(false)
+            error[1] = false
+          }} />
         {error[1] && <p id='warning'>{error[0]}</p>}
       </div>
     </div>
