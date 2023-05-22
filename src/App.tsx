@@ -5,6 +5,7 @@ import NavBar from './components/NavBar';
 import BookShelf from './components/BookShelf';
 import { handleCreateClass } from './handlers/classHandler';
 import TClassHW from './types/TClassHW';
+import { useNavigate } from 'react-router-dom';
 
 export function validateString(data: string) {
   if (data.length <= 0 ||
@@ -25,7 +26,7 @@ function App() {
   const [nameOfClass, setNameOfClass] = useState('');
   const [error, setError] = useState<[string, boolean]>(['', false]);
   const [latestClass, setLatestClass] = useState<TClassHW>();
-
+  const navigate = useNavigate();
 
   function changeAdd() {
     if (!isAdding) setIsAdding(true);
@@ -49,7 +50,9 @@ function App() {
       return
     }
 
+    
     const createdClass = await handleCreateClass(event, nameOfClass);
+    createdClass instanceof Error && navigate('/login')
 
     createdClass ? (setLatestClass(createdClass), reset()) : setError(['Invalid', true]);
   }

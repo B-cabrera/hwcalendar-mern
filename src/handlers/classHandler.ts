@@ -22,9 +22,12 @@ export async function handleCreateClass(event: FormEvent<HTMLFormElement>, nameO
     body: JSON.stringify(newClass),
   })
 
-  const createdClass = response.status == 400 ? null : await response.json() as TClassHW;
-
-  return createdClass
+  if (response.ok) 
+    return response.json()
+  else if (response.status == 400)
+    return null
+  else if (response.status == 401)
+    return new Error()
 
 
 }
