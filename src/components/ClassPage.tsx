@@ -60,7 +60,7 @@ export default function ClassPage() {
 
 
     createdHW instanceof Error && navigate('/login');
-    
+
     createdHW ? reset() : setIsValid(false);
 
   }
@@ -75,17 +75,21 @@ export default function ClassPage() {
       return
     }
 
-    handleUpdateClassName(id!, currentClass).then((data) => {
-      if (data) {
-        const newPath = generatePath('/:name/:id', {name: currentClass, id: id!});
-        setIsValid(true)
-        navigate(newPath)
-        window.location.reload()
-      } else {
-        setIsValid(false)
-      }
-    })
-    
+    const updatedClasses = await handleUpdateClassName(id!, currentClass)
+
+    updatedClasses instanceof Error && navigate('/login');
+
+
+    if (updatedClasses) {
+      const newPath = generatePath('/:name/:id', { name: currentClass, id: id! });
+      setIsValid(true)
+      navigate(newPath)
+      window.location.reload()
+    } else {
+      setIsValid(false)
+    }
+
+
 
   }
 
@@ -127,7 +131,7 @@ export default function ClassPage() {
         onDateChange={updateHWDate}
         onSubmit={addHW}
         value={hwName}
-        changer = {() => setIsAddingAssignment(false)}
+        changer={() => setIsAddingAssignment(false)}
       />
     </div>
   )

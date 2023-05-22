@@ -62,15 +62,18 @@ export async function handleUpdateClassName(classID: string, newName: string) {
   const response = await fetch(`http://localhost:4008/api/class/${classID}`, {
     method: 'PATCH',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     },
     body: JSON.stringify({
       newName
     })
   })
 
-
-  const didUpdate = response.status == 200;
-
-  return didUpdate;
+  if (response.status == 400)
+    return false
+  else if (response.status == 401)
+    return new Error()
+  else
+    return true
 }
