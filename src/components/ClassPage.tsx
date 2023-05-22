@@ -57,6 +57,10 @@ export default function ClassPage() {
     }
 
     const createdHW = await handleCreateAssignment(hwName, hwDate, id);
+
+
+    createdHW instanceof Error && navigate('/login');
+    
     createdHW ? reset() : setIsValid(false);
 
   }

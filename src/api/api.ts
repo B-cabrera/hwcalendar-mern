@@ -17,7 +17,7 @@ router.get('/', verifyToken, getAllClassNames);// DONE
 router.get('/:id', verifyToken, getAssignmentsByClassID); // DONE
 router.get('/auth/googleClient', getGoogleClientID); // DONE
 router.post('/class', verifyToken, createNewClass); // DONE
-router.post('/assignment', verifyToken, createNewAssignment);
+router.post('/assignment', verifyToken, createNewAssignment); // DONE
 router.post('/auth', initAuth); // DONE
 router.patch('/assignment', verifyToken, toggleAssignment);
 router.patch('/assignment/:id', verifyToken, updateAssignment);

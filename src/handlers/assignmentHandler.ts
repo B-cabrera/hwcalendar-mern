@@ -49,7 +49,8 @@ export async function handleCreateAssignment(nameOfHW: string, dateOfHW: Date | 
   const response = await fetch('http://localhost:4008/api/assignment', {
     method: 'POST',
     headers: {
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     },
     body: JSON.stringify({
       newHW,
@@ -57,11 +58,12 @@ export async function handleCreateAssignment(nameOfHW: string, dateOfHW: Date | 
     }),
   })
 
-  const createdAssignment = response.status == 400 ? null : newHW;
-
-
-  return createdAssignment;
-
+  if (response.status == 400)
+    return null
+  else if (response.status == 401)
+    return new Error()
+  else
+    return newHW
 
 }
 
