@@ -13,7 +13,7 @@ A personal project to practice developing a web application with the MERN stack 
 - [ ] Google Calendar API
 
 ### Progress
-Current Phase:  User Auth     
+Current Phase: Fixing small bugs      
 Next Phase: Google Calendar API
 
 #### Contact
