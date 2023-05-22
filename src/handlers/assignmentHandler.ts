@@ -78,11 +78,18 @@ export async function handleCreateAssignment(nameOfHW: string, dateOfHW: Date | 
 export async function handleDeleteAssignment(hwID: number | undefined, classID: string | undefined) {
   const response = await fetch(`http://localhost:4008/api/assignment/${hwID}/${classID}`, {
     method: "DELETE",
+    headers: {
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    }
   })
 
-  const didDelete = response.status != 500;
+  if (response.status == 500)
+    return false
+  else if (response.status == 401)
+    return new Error()
+  else
+    return true
 
-  return didDelete;
 }
 
 

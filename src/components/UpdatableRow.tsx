@@ -39,6 +39,8 @@ export default function UpdatableRow({ hw, classID: id, update }: UpdatableRowPr
   async function deleteAssignment(hwID: number | undefined) {
     const deleted = await handleDeleteAssignment(hwID, id);
 
+    deleted instanceof Error && navigate('/login');
+
     if (deleted) update();
   }
 

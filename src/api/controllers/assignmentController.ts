@@ -1,6 +1,7 @@
 import { Request, Response } from "express";
 import TClassHW from "../../types/TClassHW";
 import ClassHW from "../model/Classes";
+import User from "../model/User";
 
 export async function toggleAssignment(req: Request, res: Response) {
   const hwID = req.body.hwID;
