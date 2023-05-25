@@ -41,8 +41,8 @@ export default function LandingPage() {
         />
         <h1>HwCalendar</h1>
       </span>
-      <button onClick={getAccessToken}>Login</button>
       <span id='mainmessage'>
+        <button id="loginbtn" onClick={getAccessToken}>Login</button>
         <p>HwCalendar: A platform where you can track homework due dates and classes!</p>
       </span>
       <div id='description'>

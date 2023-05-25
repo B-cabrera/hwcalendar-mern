@@ -2,6 +2,10 @@
   width: 80px;
 }
 
+#loginbtn {
+  margin-top: 10px;
+}
+
 #heading {
   background-color: rgb(64, 64, 64);
   display: flex;
