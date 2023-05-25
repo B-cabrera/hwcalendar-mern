@@ -12,7 +12,7 @@ import { verifyToken } from './middleware';
 const router = Router();
 
 
-router.get('/', verifyToken, getAllClassNames);
+router.get('/classes', verifyToken, getAllClassNames);
 router.get('/:id', verifyToken, getAssignmentsByClassID); 
 router.get('/auth/googleClient', getGoogleClientID); 
 router.get('/auth/user', verifyToken, checkForLoggedIn);

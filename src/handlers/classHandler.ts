@@ -35,7 +35,7 @@ export async function handleCreateClass(event: FormEvent<HTMLFormElement>, nameO
 
 
 export async function handleGetAllClasses() {
-  const response = await fetch(`${API_BASE_URL}`, {
+  const response = await fetch(`${API_BASE_URL}/classes`, {
     headers: {
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     }
