@@ -6,6 +6,8 @@ import { createBrowserRouter, RouterProvider } from 'react-router-dom'
 import ClassPage from './components/ClassPage'
 import LandingPage from './components/LandingPage'
 
+export const API_BASE_URL = 'http://localhost:4008/api';
+
 const router = createBrowserRouter([{
   path: "/",
   element: <App />

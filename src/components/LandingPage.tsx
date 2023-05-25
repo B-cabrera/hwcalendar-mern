@@ -2,6 +2,7 @@ import { useEffect, useState } from 'react'
 import '../styles/LandingPage.css'
 import { useNavigate } from 'react-router-dom';
 import { handleInitAuth, handleLoggedInCheck } from '../handlers/clientHandler';
+import { API_BASE_URL } from '../main';
 
 export default function LandingPage() {
   const [googleClient, setGoogleClient] = useState<google.accounts.oauth2.CodeClient>();
@@ -15,7 +16,7 @@ export default function LandingPage() {
 
 
 
-    fetch("http://localhost:4008/api/auth/googleClient").then((res) => {
+    fetch(`${API_BASE_URL}/auth/googleClient`).then((res) => {
       return res.json()
     }).then((json) => {
       setGoogleClient(google.accounts.oauth2.initCodeClient({

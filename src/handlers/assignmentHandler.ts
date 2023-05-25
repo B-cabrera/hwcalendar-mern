@@ -1,7 +1,8 @@
+import { API_BASE_URL } from "../main";
 import THW from "../types/THW";
 
 export async function handleGetAssignmentByClassID(id: string | undefined) {
-  const response = await fetch(`http://localhost:4008/api/${id}`, {
+  const response = await fetch(`${API_BASE_URL}/${id}`, {
     headers: {
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     }
@@ -17,7 +18,7 @@ export async function handleGetAssignmentByClassID(id: string | undefined) {
 
 
 export async function handleToggleAssignment(classID: string | undefined, hwID: number, updatedToggle: boolean) {
-  const response = await fetch("http://localhost:4008/api/assignment", {
+  const response = await fetch(`${API_BASE_URL}/assignment`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
@@ -52,7 +53,7 @@ export async function handleCreateAssignment(nameOfHW: string, dateOfHW: Date | 
   }
 
 
-  const response = await fetch('http://localhost:4008/api/assignment', {
+  const response = await fetch(`${API_BASE_URL}/assignment`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -76,7 +77,7 @@ export async function handleCreateAssignment(nameOfHW: string, dateOfHW: Date | 
 
 
 export async function handleDeleteAssignment(hwID: number | undefined, classID: string | undefined) {
-  const response = await fetch(`http://localhost:4008/api/assignment/${hwID}/${classID}`, {
+  const response = await fetch(`${API_BASE_URL}/assignment/${hwID}/${classID}`, {
     method: "DELETE",
     headers: {
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
@@ -96,7 +97,7 @@ export async function handleDeleteAssignment(hwID: number | undefined, classID: 
 
 export async function handleUpdateAssignment(name: string, date: string, assignmentID: number, classID: string) {
 
-  const response = await fetch(`http://localhost:4008/api/assignment/${assignmentID}`, {
+  const response = await fetch(`${API_BASE_URL}/assignment/${assignmentID}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',

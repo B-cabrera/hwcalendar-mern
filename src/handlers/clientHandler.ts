@@ -1,5 +1,7 @@
+import { API_BASE_URL } from "../main";
+
 export async function handleInitAuth(authResponse: google.accounts.oauth2.CodeResponse) {
-  const apiResponse = await fetch(`http://localhost:4008/api/auth`, {
+  const apiResponse = await fetch(`${API_BASE_URL}/auth`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json'
@@ -15,7 +17,7 @@ export async function handleInitAuth(authResponse: google.accounts.oauth2.CodeRe
 
 
 export async function handleLoggedInCheck() {
-  const response = await fetch('http://localhost:4008/api/auth/user', {
+  const response = await fetch(`${API_BASE_URL}/auth/user`, {
     headers: {
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     }

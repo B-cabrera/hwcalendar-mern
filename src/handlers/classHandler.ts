@@ -1,6 +1,7 @@
 import { FormEvent } from "react";
 import TClassHW from "../types/TClassHW";
 import THW from "../types/THW";
+import { API_BASE_URL } from "../main";
 
 export async function handleCreateClass(event: FormEvent<HTMLFormElement>, nameOfClass: string) {
   event.preventDefault();
@@ -13,7 +14,7 @@ export async function handleCreateClass(event: FormEvent<HTMLFormElement>, nameO
     assignments: []
   }
 
-  const response = await fetch('http://localhost:4008/api/class', {
+  const response = await fetch(`${API_BASE_URL}/class`, {
     method: 'POST',
     headers: {
       'Content-Type': 'application/json',
@@ -34,7 +35,7 @@ export async function handleCreateClass(event: FormEvent<HTMLFormElement>, nameO
 
 
 export async function handleGetAllClasses() {
-  const response = await fetch('http://localhost:4008/api', {
+  const response = await fetch(`${API_BASE_URL}`, {
     headers: {
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
     }
@@ -46,7 +47,7 @@ export async function handleGetAllClasses() {
 
 
 export async function handleDeleteClass(classID: number) {
-  const response = await fetch(`http://localhost:4008/api/class/${classID}`, {
+  const response = await fetch(`${API_BASE_URL}/class/${classID}`, {
     method: "DELETE",
     headers: {
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`
@@ -64,7 +65,7 @@ export async function handleDeleteClass(classID: number) {
 
 
 export async function handleUpdateClassName(classID: string, newName: string) {
-  const response = await fetch(`http://localhost:4008/api/class/${classID}`, {
+  const response = await fetch(`${API_BASE_URL}/class/${classID}`, {
     method: 'PATCH',
     headers: {
       'Content-Type': 'application/json',
