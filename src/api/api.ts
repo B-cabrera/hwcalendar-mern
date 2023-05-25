@@ -6,7 +6,7 @@ import {
   getAllClassNames,
   updateClassName,
 } from './controllers/classController';
-import { getGoogleClientID, initAuth } from './controllers/serverController';
+import { checkForLoggedIn, getGoogleClientID, initAuth } from './controllers/serverController';
 import { verifyToken } from './middleware';
 
 const router = Router();
@@ -15,6 +15,7 @@ const router = Router();
 router.get('/', verifyToken, getAllClassNames);
 router.get('/:id', verifyToken, getAssignmentsByClassID); 
 router.get('/auth/googleClient', getGoogleClientID); 
+router.get('/auth/user', verifyToken, checkForLoggedIn);
 router.post('/class', verifyToken, createNewClass); 
 router.post('/assignment', verifyToken, createNewAssignment); 
 router.post('/auth', initAuth); 

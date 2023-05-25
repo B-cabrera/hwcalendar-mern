@@ -1,13 +1,20 @@
 import { useEffect, useState } from 'react'
 import '../styles/LandingPage.css'
 import { useNavigate } from 'react-router-dom';
-import { handleInitAuth } from '../handlers/clientHandler';
+import { handleInitAuth, handleLoggedInCheck } from '../handlers/clientHandler';
 
 export default function LandingPage() {
   const [googleClient, setGoogleClient] = useState<google.accounts.oauth2.CodeClient>();
   const navigate = useNavigate();
 
   useEffect(() => {
+
+    handleLoggedInCheck().then((isLoggedIn) => {
+      isLoggedIn && navigate('/');
+    })
+
+
+
     fetch("http://localhost:4008/api/auth/googleClient").then((res) => {
       return res.json()
     }).then((json) => {

@@ -87,3 +87,12 @@ async function getUserEmail(authCode: any) {
 export async function getGoogleClientID(req: Request, res: Response) {
   res.json({GOOGLE_CLIENT_ID});
 }
+
+
+export function checkForLoggedIn(req: Request, res: Response) {
+  // This function will run ONLY if the user's token is valid, middleware
+  // will throw a 401 status if it is not valid
+
+  res.status(200);
+  res.send();
+}
