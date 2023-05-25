@@ -29,8 +29,10 @@ export async function getAllClassNames(req: Request, res: Response) {
       },
     ]);
 
+    
+    let allClasses = classesObj[0]?.classes
 
-    const allClasses = classesObj![0].classes
+    allClasses == undefined && (allClasses = []);
 
 
     res.status(200);

@@ -28,7 +28,7 @@ export default function BookShelf({ latestClass }: TBookShelfProps) {
     async function getClasses() {
       const allClasses = await handleGetAllClasses();
 
-      allClasses instanceof Error && navigate('/login')
+      allClasses instanceof Error && navigate('/login');
 
       setClasses(allClasses);
     }
