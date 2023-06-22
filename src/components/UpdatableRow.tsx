@@ -6,6 +6,7 @@ import { ChangeEvent, FormEvent, useState } from "react";
 import '../styles/UpdatableRow.css';
 import { validateString } from "../App";
 import { useNavigate } from "react-router-dom";
+import GoogleCalendarButton from "./GoogleCalendarButton";
 
 interface UpdatableRowProps {
   hw: THW,
@@ -101,6 +102,10 @@ export default function UpdatableRow({ hw, classID: id, update }: UpdatableRowPr
         initialValue={date}
         onChange={updateDate}
         onSubmit={submitData}
+      />
+      <GoogleCalendarButton
+        eventName={title}
+        eventDate={date} 
       />
       <button id="remove" onClick={() => deleteAssignment(hw._id)}>x</button>
       {error && <p id="error">BAD INPUT</p>}

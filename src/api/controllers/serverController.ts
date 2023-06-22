@@ -5,6 +5,7 @@ import User from "../model/User";
 import { TUser } from "../../types/TUser";
 import jwt from 'jsonwebtoken';
 import { calendar_v3, google } from "googleapis";
+import moment from 'moment';
 
 interface UserInfoResponse {
   email: string
@@ -104,6 +105,9 @@ export async function createEvent(req: Request, res: Response) {
   try {
     // TESTING GOOGLE CALENDER API
     const userID = req.body.id;
+    const eventSummary = req.body.eventTitle
+    const eventDate = req.body.eventDay
+    const formattedDate = moment(eventDate, 'MM/DD/YYYY').format('YYYY-MM-DD');
 
     const theUser = await User.findById(userID) as unknown as TUser;
     const userRefreshToken = theUser.refreshToken;
@@ -124,13 +128,13 @@ export async function createEvent(req: Request, res: Response) {
 
 
     const event: calendar_v3.Schema$Event = {
-      summary: "Sample Event",
+      summary: eventSummary,
       start: {
-        dateTime: "2023-06-24T11:00:00",
+        date: formattedDate,
         timeZone: "America/Los_Angeles",
       },
       end: {
-        dateTime: "2023-06-24T16:00:00",
+        date: formattedDate,
         timeZone: "America/Los_Angeles",
       },
     };

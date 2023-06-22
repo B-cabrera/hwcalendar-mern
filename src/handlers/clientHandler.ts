@@ -26,12 +26,14 @@ export async function handleLoggedInCheck() {
   return response.status == 200;
 }
 
-export async function handleCreateEvent() {
+export async function handleCreateEvent(eventTitle: string, eventDay: string) {
   const response = await fetch(`${API_BASE_URL}/user/event`, {
     method: "POST",
     headers: {
-      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
-    } 
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
+      'Content-Type': 'application/json'
+    },
+    body: JSON.stringify({eventTitle, eventDay})
   });
 
 
