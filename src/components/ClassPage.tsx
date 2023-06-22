@@ -9,6 +9,7 @@ import UpdatableRow from "./UpdatableRow";
 import { validateString } from "../App";
 import UpdateField from "./UpdateField";
 import { handleUpdateClassName } from "../handlers/classHandler";
+import { handleCreateEvent } from "../handlers/clientHandler";
 
 export default function ClassPage() {
   const [assignments, setAssignments] = useState<THW[] | null>();
@@ -133,6 +134,7 @@ export default function ClassPage() {
         value={hwName}
         changer={() => setIsAddingAssignment(false)}
       />
+      <button onClick={handleCreateEvent}>Testing</button>
     </div>
   )
 }

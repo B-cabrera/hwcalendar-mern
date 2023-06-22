@@ -25,3 +25,15 @@ export async function handleLoggedInCheck() {
 
   return response.status == 200;
 }
+
+export async function handleCreateEvent() {
+  const response = await fetch(`${API_BASE_URL}/user/event`, {
+    method: "POST",
+    headers: {
+      'Authorization': `Bearer ${sessionStorage.getItem('token')}`
+    } 
+  });
+
+
+  return response.status == 200;
+}

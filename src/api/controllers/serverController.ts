@@ -1,9 +1,10 @@
 import { Request, Response } from "express";
-import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, JWT_SECRET } from "../config";
+import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, JWT_SECRET, REDIRECT_URI } from "../config";
 import { OAuth2Client } from "google-auth-library";
 import User from "../model/User";
 import { TUser } from "../../types/TUser";
 import jwt from 'jsonwebtoken';
+import { calendar_v3, google } from "googleapis";
 
 interface UserInfoResponse {
   email: string
@@ -13,15 +14,15 @@ export async function initAuth(req: Request, res: Response) {
   const googleAuthCode = req.body.code
 
   try {
-    const userEmail = await getUserEmail(googleAuthCode);
+    const emailAndToken = await getUserEmailAndRefreshToken(googleAuthCode);
 
-    let user = await User.findOne({email: userEmail}) as unknown as TUser;
+    let user = await User.findOne({ email: emailAndToken.email }) as unknown as TUser;
 
     if (!user) {
       // CREATE NEW USER
       let newUser = new User({
-        authCode: googleAuthCode,
-        email: userEmail,
+        refreshToken: emailAndToken.refreshToken,
+        email: emailAndToken.email,
         classes: []
       });
 
@@ -38,7 +39,7 @@ export async function initAuth(req: Request, res: Response) {
       id: user._id.toHexString()
     })
 
-    res.json({token});
+    res.json({ token });
 
   } catch (error) {
     res.status(400);
@@ -55,37 +56,38 @@ function generateJWT(data: {}) {
   });
 }
 
-async function getUserEmail(authCode: any) {
+async function getUserEmailAndRefreshToken(authCode: any) {
   const client = new OAuth2Client(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET);
 
-    const tokenResponse = await client.getToken({
-      code: authCode,
-      redirect_uri: "http://localhost:5173",
-    });
+  const tokenResponse = await client.getToken({
+    code: authCode,
+    redirect_uri: REDIRECT_URI,
+  });
 
 
-    const accessToken = tokenResponse.tokens.access_token;
+  const accessToken = tokenResponse.tokens.access_token;
+  const refreshToken = tokenResponse.tokens.refresh_token;
 
-    client.setCredentials({
-      access_token: accessToken
-    })
+  client.setCredentials({
+    access_token: accessToken
+  });
 
-    const userInfoResponse = await client.request<UserInfoResponse>({
-      url: 'https://www.googleapis.com/oauth2/v3/userinfo',
-      method: 'GET',
-      headers: {
-        Authorization: `Bearer ${accessToken}`
-      }
-    })
+  const userInfoResponse = await client.request<UserInfoResponse>({
+    url: 'https://www.googleapis.com/oauth2/v3/userinfo',
+    method: 'GET',
+    headers: {
+      Authorization: `Bearer ${accessToken}`
+    }
+  })
 
-    const email = userInfoResponse.data.email;
+  const email = userInfoResponse.data.email;
 
-    return email;
+  return { email, refreshToken };
 }
 
 
 export async function getGoogleClientID(req: Request, res: Response) {
-  res.json({GOOGLE_CLIENT_ID});
+  res.json({ GOOGLE_CLIENT_ID });
 }
 
 
@@ -95,4 +97,55 @@ export function checkForLoggedIn(req: Request, res: Response) {
 
   res.status(200);
   res.send();
+}
+
+
+export async function createEvent(req: Request, res: Response) {
+  try {
+    // TESTING GOOGLE CALENDER API
+    const userID = req.body.id;
+
+    const theUser = await User.findById(userID) as unknown as TUser;
+    const userRefreshToken = theUser.refreshToken;
+
+    const client = new OAuth2Client(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET);
+    client.setCredentials({
+      refresh_token: userRefreshToken
+    })
+
+
+    const userAccessTokenResponse = await client.refreshAccessToken();
+
+
+    const calendar = google.calendar({
+      'version': 'v3',
+      auth: client
+    });
+
+
+    const event: calendar_v3.Schema$Event = {
+      summary: "Sample Event",
+      start: {
+        dateTime: "2023-06-24T11:00:00",
+        timeZone: "America/Los_Angeles",
+      },
+      end: {
+        dateTime: "2023-06-24T16:00:00",
+        timeZone: "America/Los_Angeles",
+      },
+    };
+
+
+    const googleCalendarResponse = await calendar.events.insert({
+      calendarId: 'primary',
+      auth: client,
+      requestBody: event
+    })
+
+    res.status(200)
+    res.send(googleCalendarResponse.data);
+  } catch (error) {
+    res.status(500)
+  }
+
 }
