@@ -3,7 +3,7 @@ import mongoose from "mongoose";
 
 // TEMP SCHEMA: WORKING OUT USER AUTH FLOW
 const UserSchema = new mongoose.Schema({
-  authCode: {
+  refreshToken: {
     type: String,
     required: true
   },

@@ -2,7 +2,7 @@ import { ObjectId } from "mongodb"
 
 export type TUser = {
   _id: ObjectId;
-  authCode: string,
+  refreshToken: string,
   email: string,
   classes: ObjectId[]
 }
