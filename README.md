@@ -7,12 +7,10 @@ A web application where you can add HW with due dates based on class and be remi
 A personal project to practice developing a web application with the MERN stack (MongoDB, Express.js, React.js, and Node.js).
 
 ### Ideas
-- React Toastify for Notifications like invalid input
+- Fix the look of row with new google calendar button
 
 ### Reminders
-- Notify user that event has been created when add gc event button is pressed
-- Look into React Toastify
-
+- Make sure everything looks good on mobile with row fixes + new google calendar button
 
 ### Progress
 Current Phase: Google Calendar API        

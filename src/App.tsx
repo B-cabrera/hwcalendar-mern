@@ -6,6 +6,7 @@ import BookShelf from './components/BookShelf';
 import { handleCreateClass } from './handlers/classHandler';
 import TClassHW from './types/TClassHW';
 import { useNavigate } from 'react-router-dom';
+import { toast } from 'react-hot-toast';
 
 export function validateString(data: string) {
   if (data.length <= 0 ||
@@ -24,7 +25,6 @@ export function validateString(data: string) {
 function App() {
   const [isAdding, setIsAdding] = useState(false);
   const [nameOfClass, setNameOfClass] = useState('');
-  const [error, setError] = useState<[string, boolean]>(['', false]);
   const [latestClass, setLatestClass] = useState<TClassHW>();
   const navigate = useNavigate();
 
@@ -38,7 +38,6 @@ function App() {
 
   function reset() {
     setNameOfClass('');
-    setError(['', false]);
     setIsAdding(false);
   }
 
@@ -46,7 +45,7 @@ function App() {
     event.preventDefault();
 
     if (!validateString(nameOfClass)) {
-      setError(['Invalid Class', true]);
+      toastError()
       return
     }
 
@@ -54,7 +53,21 @@ function App() {
     const createdClass = await handleCreateClass(event, nameOfClass);
     createdClass instanceof Error && navigate('/login')
 
-    createdClass ? (setLatestClass(createdClass), reset()) : setError(['Invalid', true]);
+    createdClass ? (setLatestClass(createdClass), reset()) : toastError();
+  }
+
+  function toastError() {
+    toast.error('Invalid Class', {
+      duration: 1000,
+      id: 'THIS IS THE ID',
+      style: {
+        fontFamily: 'Raleway',
+        fontWeight: 900,
+        color: 'white',
+        backgroundColor: '#474747f3',
+        
+      }
+    })
   }
 
   return (
@@ -76,9 +89,7 @@ function App() {
           value={nameOfClass}
           changer={() => {
             setIsAdding(false)
-            error[1] = false
           }} />
-        {error[1] && <p id='warning'>{error[0]}</p>}
       </div>
     </div>
   )

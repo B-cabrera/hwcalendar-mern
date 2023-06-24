@@ -7,6 +7,7 @@ import '../styles/UpdatableRow.css';
 import { validateString } from "../App";
 import { useNavigate } from "react-router-dom";
 import GoogleCalendarButton from "./GoogleCalendarButton";
+import toast from "react-hot-toast";
 
 interface UpdatableRowProps {
   hw: THW,
@@ -17,7 +18,6 @@ interface UpdatableRowProps {
 export default function UpdatableRow({ hw, classID: id, update }: UpdatableRowProps) {
   const [date, setDate] = useState(formatDate(hw.dueDate));
   const [title, setTitle] = useState(hw.name.toUpperCase());
-  const [error, setError] = useState(false);
   const navigate = useNavigate();
 
   async function toggleCheckBox(oldValue: boolean, assignmentID: number) {
@@ -63,11 +63,19 @@ export default function UpdatableRow({ hw, classID: id, update }: UpdatableRowPr
 
     if (!validateString(title) || !validateDate()) {
       event.preventDefault();
-      setError(true)
+      toast.error('Invalid Input', {
+        duration: 1000,
+        id: 'THIS IS THE ID',
+        style: {
+          fontFamily: 'Raleway',
+          fontWeight: 900,
+          color: 'white',
+          backgroundColor: '#474747f3',
+          
+        }
+      })
       return
     }
-
-    setError(false);
 
     const updated = await handleUpdateAssignment(title, date, hw._id!, id);
 
@@ -75,7 +83,20 @@ export default function UpdatableRow({ hw, classID: id, update }: UpdatableRowPr
 
     if (updated) {
       update();
-    } else setError(true)
+    } else {
+      toast.error('Invalid Input', {
+        duration: 1000,
+        id: 'THIS IS THE ID',
+        style: {
+          fontFamily: 'Raleway',
+          fontWeight: 900,
+          color: 'white',
+          backgroundColor: '#474747f3',
+          
+        }
+      })
+    }
+      
   }
 
   function updateTitle(event: ChangeEvent<HTMLInputElement>): void {
@@ -108,7 +129,6 @@ export default function UpdatableRow({ hw, classID: id, update }: UpdatableRowPr
         eventDate={date} 
       />
       <button id="remove" onClick={() => deleteAssignment(hw._id)}>x</button>
-      {error && <p id="error">BAD INPUT</p>}
     </div>
   )
 }

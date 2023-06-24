@@ -9,7 +9,7 @@ import UpdatableRow from "./UpdatableRow";
 import { validateString } from "../App";
 import UpdateField from "./UpdateField";
 import { handleUpdateClassName } from "../handlers/classHandler";
-import { handleCreateEvent } from "../handlers/clientHandler";
+import toast from "react-hot-toast";
 
 export default function ClassPage() {
   const [assignments, setAssignments] = useState<THW[] | null>();
@@ -17,7 +17,6 @@ export default function ClassPage() {
   const [isAddingAssignment, setIsAddingAssignment] = useState(false);
   const [hwName, setHwName] = useState('');
   const [hwDate, setHwDate] = useState<Date>();
-  const [isValid, setIsValid] = useState(true);
   const { id, className } = useParams();
   const [currentClass, setCurrentClassName] = useState(className!);
   const navigate = useNavigate();
@@ -36,10 +35,11 @@ export default function ClassPage() {
   function reset() {
     setUpdated(!updated);
     setIsAddingAssignment(false);
-    setIsValid(true);
     setHwDate(undefined);
     setHwName('');
   }
+
+
 
   function updateHWName(event: ChangeEvent<HTMLInputElement>) {
     setHwName(event.target.value);
@@ -53,7 +53,17 @@ export default function ClassPage() {
     event.preventDefault();
 
     if (!validateString(hwName)) {
-      setIsValid(false)
+      toast.error('Invalid Input', {
+        duration: 1000,
+        id: 'THIS IS THE ID',
+        style: {
+          fontFamily: 'Raleway',
+          fontWeight: 900,
+          color: 'white',
+          backgroundColor: '#474747f3',
+          
+        }
+      })
       return
     }
 
@@ -62,7 +72,17 @@ export default function ClassPage() {
 
     createdHW instanceof Error && navigate('/login');
 
-    createdHW ? reset() : setIsValid(false);
+    createdHW ? reset() : toast.error('Invalid Input', {
+      duration: 1000,
+      id: 'THIS IS THE ID',
+      style: {
+        fontFamily: 'Raleway',
+        fontWeight: 900,
+        color: 'white',
+        backgroundColor: '#474747f3',
+        
+      }
+    });
 
   }
   function updateClassName(event: ChangeEvent<HTMLInputElement>) {
@@ -72,7 +92,17 @@ export default function ClassPage() {
   async function changeClassName(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (!validateString(currentClass)) {
-      setIsValid(false)
+      toast.error('Invalid Input', {
+        duration: 1000,
+        id: 'THIS IS THE ID',
+        style: {
+          fontFamily: 'Raleway',
+          fontWeight: 900,
+          color: 'white',
+          backgroundColor: '#474747f3',
+          
+        }
+      })
       return
     }
 
@@ -83,11 +113,20 @@ export default function ClassPage() {
 
     if (updatedClasses) {
       const newPath = generatePath('/:name/:id', { name: currentClass, id: id! });
-      setIsValid(true)
       navigate(newPath)
       window.location.reload()
     } else {
-      setIsValid(false)
+      toast.error('Invalid Input', {
+        duration: 1000,
+        id: 'THIS IS THE ID',
+        style: {
+          fontFamily: 'Raleway',
+          fontWeight: 900,
+          color: 'white',
+          backgroundColor: '#474747f3',
+          
+        }
+      })
     }
 
 
@@ -102,7 +141,6 @@ export default function ClassPage() {
   return (
     <div id='page'>
       <NavBar />
-      {!isValid && <h2 id="warning">Input Invalid</h2>}
       <UpdateField
         className="titlefield"
         initialValue={currentClass}
