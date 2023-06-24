@@ -37,5 +37,6 @@ export async function handleCreateEvent(eventTitle: string, eventDay: string) {
   });
 
 
+
   return response.status == 200;
 }

@@ -134,7 +134,6 @@ export default function ClassPage() {
         value={hwName}
         changer={() => setIsAddingAssignment(false)}
       />
-      <button onClick={handleCreateEvent}>Testing</button>
     </div>
   )
 }
