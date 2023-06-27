@@ -10,7 +10,7 @@ A personal project to practice developing a web application with the MERN stack 
 Nada.
 
 ### Reminders
-Nada.
+Change file structure to seperate front-end and back-end (better for deployment)
 
 ### Progress
 Current Phase: Deploying Application!  
