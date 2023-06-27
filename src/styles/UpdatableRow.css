@@ -18,7 +18,7 @@
 
 #row {
   display: inline-grid;
-  grid-template-columns: repeat(4, fit-content(300px));
+  grid-template-columns: repeat(5, fit-content(300px));
   word-break: break-word;
   justify-content: space-between;
 }

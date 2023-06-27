@@ -7,14 +7,13 @@ A web application where you can add HW with due dates based on class and be remi
 A personal project to practice developing a web application with the MERN stack (MongoDB, Express.js, React.js, and Node.js).
 
 ### Ideas
-- Fix the look of row with new google calendar button
+Nada.
 
 ### Reminders
-- Make sure everything looks good on mobile with row fixes + new google calendar button
+Nada.
 
 ### Progress
-Current Phase: Google Calendar API        
-Next Phase: Deploying Application!
+Current Phase: Deploying Application!  
 
 #### Contact
 I am open to all comments about improving the code and overall improvements.  
