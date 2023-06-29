@@ -5,9 +5,10 @@ import { handleInitAuth, handleLoggedInCheck } from '../handlers/clientHandler';
 import { API_BASE_URL } from '../main';
 
 export default function LandingPage() {
+  // google.accounts.oauth2.CodeClient
   const [googleClient, setGoogleClient] = useState<google.accounts.oauth2.CodeClient>();
   const navigate = useNavigate();
-
+  
   useEffect(() => {
 
     handleLoggedInCheck().then((isLoggedIn) => {
@@ -23,7 +24,7 @@ export default function LandingPage() {
         client_id: json.GOOGLE_CLIENT_ID,
         scope: 'https://www.googleapis.com/auth/calendar email',
         ux_mode: 'popup',
-        callback: (response) => {
+        callback: (response: any) => {
           handleInitAuth(response).then((data) => {
             sessionStorage.setItem('token', data.token);
             navigate('/')
@@ -33,9 +34,7 @@ export default function LandingPage() {
 
     })
 
-
   }, [])
-
 
   function getAccessToken() {
     googleClient!.requestCode();

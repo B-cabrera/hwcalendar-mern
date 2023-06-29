@@ -1,5 +1,5 @@
 import { Request, Response } from "express";
-import TClassHW from "../../types/TClassHW";
+import TClassHW from "../../frontend/src/types/TClassHW";
 import ClassHW from "../model/Classes";
 import User from "../model/User";
 

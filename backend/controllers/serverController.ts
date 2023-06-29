@@ -1,11 +1,11 @@
 import { Request, Response } from "express";
 import { GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET, JWT_SECRET, REDIRECT_URI } from "../config";
-import { OAuth2Client } from "google-auth-library";
-import User from "../model/User";
-import { TUser } from "../../types/TUser";
+import { OAuth2Client} from "google-auth-library";
 import jwt from 'jsonwebtoken';
 import { calendar_v3, google } from "googleapis";
 import moment from 'moment';
+import { TUser } from "../../frontend/src/types/TUser";
+import User from "../model/User";
 
 interface UserInfoResponse {
   email: string

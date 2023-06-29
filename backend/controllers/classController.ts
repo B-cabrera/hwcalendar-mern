@@ -1,7 +1,7 @@
 import { Request, Response } from "express";
+import mongoose from "mongoose";
 import ClassHW from "../model/Classes";
 import User from "../model/User";
-import mongoose from "mongoose";
 
 interface tokenData {
   id: string,

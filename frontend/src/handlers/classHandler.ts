@@ -1,6 +1,5 @@
 import { FormEvent } from "react";
 import TClassHW from "../types/TClassHW";
-import THW from "../types/THW";
 import { API_BASE_URL } from "../main";
 
 export async function handleCreateClass(event: FormEvent<HTMLFormElement>, nameOfClass: string) {
