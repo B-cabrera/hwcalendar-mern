@@ -1,6 +1,5 @@
 import { Link, useNavigate } from "react-router-dom"
 import "../styles/NavBar.css"
-import HwCalendarLogo from '../assets/HWCalendarLogo.png';
 
 export default function NavBar() {
   const navigate = useNavigate();
@@ -17,7 +16,7 @@ export default function NavBar() {
         <Link to='/'>
           <img
             id="logo"
-            src={HwCalendarLogo}
+            src="/HwCalendarLogo.png"
           />
         </Link>
         <h1><Link to='/'>
