@@ -9,9 +9,7 @@ import cors from 'cors';
 
 const app: Application = express();
 
-app.use(cors({
-  origin: 'https://hwcalendar-mern.vercel.app'
-}));
+app.use(cors());
 app.use(express.json())
 app.use('/api', router);
 

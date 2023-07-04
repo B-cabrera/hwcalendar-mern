@@ -31,7 +31,8 @@ export async function handleCreateEvent(eventTitle: string, eventDay: string) {
     method: "POST",
     headers: {
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
-      'Content-Type': 'application/json'
+      'Content-Type': 'application/json',
+      'Access-Control-Allow_Origin': '*'
     },
     body: JSON.stringify({eventTitle, eventDay})
   });
