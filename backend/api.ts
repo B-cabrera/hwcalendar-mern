@@ -7,7 +7,7 @@ import {
   updateClassName,
 } from './controllers/classController';
 import { checkForLoggedIn, createEvent, getGoogleClientID, initAuth } from './controllers/serverController';
-import { verifyToken } from './middleware';
+import { verifyToken } from './mid';
 
 const router = Router();
 
