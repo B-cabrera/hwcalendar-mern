@@ -1,4 +1,4 @@
-![HwCalendar Logo](https://github.com/B-cabrera/hwcalendar-mern/blob/main/frontend/src/assets/HwCalendarLogo.png)
+![HwCalendar Logo](https://github.com/B-cabrera/hwcalendar-mern/blob/main/frontend/public/HwCalendarLogo.png)
 
 # HwCalendar
 A web application where you can add HW with due dates based on class and be reminded using Google Calendar.
