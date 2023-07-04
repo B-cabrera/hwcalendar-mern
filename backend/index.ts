@@ -18,3 +18,5 @@ mongoose.connect(MONGO_URI!).then(() => {
     app.listen(PORT);
     console.log(`We are listening on port:${PORT}`);
 });
+
+export default app;
