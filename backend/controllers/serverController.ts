@@ -116,17 +116,18 @@ export async function createEvent(req: Request, res: Response) {
     client.setCredentials({
       refresh_token: userRefreshToken
     })
-
+    
+    console.log("Refreshing Token");
 
     const userAccessTokenResponse = await client.refreshAccessToken();
 
-
+    console.log("Token refreshed, initializing gc client")
     const calendar = google.calendar({
       'version': 'v3',
       auth: client
     });
 
-
+    console.log("Calendar Client Initialized")
     const event: calendar_v3.Schema$Event = {
       summary: eventSummary,
       start: {
@@ -139,12 +140,13 @@ export async function createEvent(req: Request, res: Response) {
       },
     };
 
-
+    console.log("Creating Event...")
     const googleCalendarResponse = await calendar.events.insert({
       calendarId: 'primary',
       auth: client,
       requestBody: event
     })
+    console.log("Event Created!")
 
     res.status(200)
     res.send(googleCalendarResponse.data);

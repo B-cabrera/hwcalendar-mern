@@ -32,7 +32,6 @@ export async function handleCreateEvent(eventTitle: string, eventDay: string) {
     headers: {
       'Authorization': `Bearer ${sessionStorage.getItem('token')}`,
       'Content-Type': 'application/json',
-      'Access-Control-Allow_Origin': '*'
     },
     body: JSON.stringify({eventTitle, eventDay})
   });
