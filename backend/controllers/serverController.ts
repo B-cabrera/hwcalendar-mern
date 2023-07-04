@@ -112,6 +112,7 @@ export async function createEvent(req: Request, res: Response) {
     const theUser = await User.findById(userID) as unknown as TUser;
     const userRefreshToken = theUser.refreshToken;
 
+    console.log("Creating client")
     const client = new OAuth2Client(GOOGLE_CLIENT_ID, GOOGLE_CLIENT_SECRET);
     client.setCredentials({
       refresh_token: userRefreshToken
