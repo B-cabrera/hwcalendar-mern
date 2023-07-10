@@ -7,7 +7,7 @@ import ClassPage from './components/ClassPage'
 import LandingPage from './components/LandingPage'
 import { Toaster } from 'react-hot-toast'
 
-export const API_BASE_URL = 'https://hwcalendarapi.vercel.app/api';
+export const API_BASE_URL = 'http://localhost:4008/api';
 
 const router = createBrowserRouter([{
   path: "/",

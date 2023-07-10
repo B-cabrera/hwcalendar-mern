@@ -33,6 +33,10 @@ export async function initAuth(req: Request, res: Response) {
       user = newUser as TUser;
 
       res.status(200)
+    } else { // if user exists, update their refresh token
+      await User.findByIdAndUpdate(user._id, {
+        refreshToken: emailAndToken.refreshToken
+      })
     }
 
 
@@ -152,6 +156,7 @@ export async function createEvent(req: Request, res: Response) {
     res.status(200)
     res.send(googleCalendarResponse.data);
   } catch (error) {
+    console.error(error)
     res.status(500)
   }
 
